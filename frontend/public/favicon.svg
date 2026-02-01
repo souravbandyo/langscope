@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#fafaf8"/>
+  <g stroke="#333" stroke-width="2" fill="none">
+    <!-- Grid lines -->
+    <line x1="20" y1="0" x2="20" y2="100" stroke="#e8e8e0"/>
+    <line x1="40" y1="0" x2="40" y2="100" stroke="#e8e8e0"/>
+    <line x1="60" y1="0" x2="60" y2="100" stroke="#e8e8e0"/>
+    <line x1="80" y1="0" x2="80" y2="100" stroke="#e8e8e0"/>
+    <line x1="0" y1="20" x2="100" y2="20" stroke="#e8e8e0"/>
+    <line x1="0" y1="40" x2="100" y2="40" stroke="#e8e8e0"/>
+    <line x1="0" y1="60" x2="100" y2="60" stroke="#e8e8e0"/>
+    <line x1="0" y1="80" x2="100" y2="80" stroke="#e8e8e0"/>
+    <!-- Lambda symbol -->
+    <path d="M30 75 L50 25 L55 25 L42 55 L70 75" stroke="#4a90d9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Sketch border -->
+  <rect x="5" y="5" width="90" height="90" fill="none" stroke="#333" stroke-width="2" rx="3"/>
+</svg>

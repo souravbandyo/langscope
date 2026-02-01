@@ -1,0 +1,251 @@
+{
+  "version": "1.0.0",
+  "metrics": {
+    "wer": {
+      "name": "Word Error Rate",
+      "description": "Ratio of word-level edits to reference length",
+      "formula": "(Substitutions + Deletions + Insertions) / Reference Words",
+      "range": [0, "inf"],
+      "optimal": "min",
+      "domains": ["asr"]
+    },
+    "cer": {
+      "name": "Character Error Rate",
+      "description": "Ratio of character-level edits to reference length",
+      "formula": "(S + D + I) / Reference Characters",
+      "range": [0, "inf"],
+      "optimal": "min",
+      "domains": ["asr", "ocr"]
+    },
+    "mer": {
+      "name": "Match Error Rate",
+      "description": "Ratio of errors to total alignment length",
+      "formula": "(S + D + I) / (S + D + I + H)",
+      "range": [0, 1],
+      "optimal": "min",
+      "domains": ["asr"]
+    },
+    "round_trip_wer": {
+      "name": "Round-trip WER",
+      "description": "WER from TTS audio transcribed back to text",
+      "formula": "WER(ASR(TTS(text)), text)",
+      "range": [0, "inf"],
+      "optimal": "min",
+      "domains": ["tts"]
+    },
+    "utmos": {
+      "name": "UTMOS",
+      "description": "Neural MOS prediction (UTokyo-SaruLab)",
+      "range": [1, 5],
+      "optimal": "max",
+      "domains": ["tts"],
+      "requires_model": true
+    },
+    "snr": {
+      "name": "Signal-to-Noise Ratio",
+      "description": "Audio quality measurement in dB",
+      "range": [0, "inf"],
+      "optimal": "max",
+      "domains": ["tts"]
+    },
+    "speaker_similarity": {
+      "name": "Speaker Similarity",
+      "description": "Cosine similarity of speaker embeddings",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["tts"]
+    },
+    "composite_tts": {
+      "name": "Composite TTS Score",
+      "description": "Weighted combination of TTS metrics",
+      "formula": "w1*(1-WER) + w2*(UTMOS/5) + w3*sigmoid(SNR) + w4*SpeakerSim",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["tts"]
+    },
+    "retrieval_accuracy": {
+      "name": "Retrieval Accuracy",
+      "description": "Whether the needle was successfully retrieved",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["needle_in_haystack"]
+    },
+    "exact_match": {
+      "name": "Exact Match",
+      "description": "Response exactly matches ground truth",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["visual_qa", "long_document_qa", "needle_in_haystack", "code_completion"]
+    },
+    "contains": {
+      "name": "Contains",
+      "description": "Ground truth appears in response",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["needle_in_haystack", "visual_qa"]
+    },
+    "semantic_match": {
+      "name": "Semantic Match",
+      "description": "LLM-judged semantic equivalence",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["visual_qa", "long_document_qa"]
+    },
+    "accuracy": {
+      "name": "Accuracy",
+      "description": "Correct answers / total",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["visual_qa", "long_document_qa"]
+    },
+    "f1": {
+      "name": "F1 Score",
+      "description": "Token-level F1 between response and reference",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["long_document_qa"]
+    },
+    "bleu": {
+      "name": "BLEU",
+      "description": "N-gram precision with brevity penalty",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["image_captioning", "long_summarization", "code_completion"]
+    },
+    "rouge_l": {
+      "name": "ROUGE-L",
+      "description": "Longest common subsequence F1",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["long_summarization", "image_captioning"]
+    },
+    "rouge_1": {
+      "name": "ROUGE-1",
+      "description": "Unigram overlap F1",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["long_summarization"]
+    },
+    "rouge_2": {
+      "name": "ROUGE-2",
+      "description": "Bigram overlap F1",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["long_summarization"]
+    },
+    "cider": {
+      "name": "CIDEr",
+      "description": "Consensus-based image description evaluation",
+      "range": [0, 10],
+      "optimal": "max",
+      "domains": ["image_captioning"]
+    },
+    "meteor": {
+      "name": "METEOR",
+      "description": "Alignment with synonyms and stemming",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["image_captioning"]
+    },
+    "field_accuracy": {
+      "name": "Field Accuracy",
+      "description": "Percentage of correctly extracted fields",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["document_extraction"]
+    },
+    "field_precision": {
+      "name": "Field Precision",
+      "description": "Correct / (Correct + Wrong)",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["document_extraction"]
+    },
+    "field_recall": {
+      "name": "Field Recall",
+      "description": "Correct / (Correct + Missing)",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["document_extraction"]
+    },
+    "critical_accuracy": {
+      "name": "Critical Field Accuracy",
+      "description": "Accuracy on critical fields only",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["document_extraction"]
+    },
+    "schema_valid": {
+      "name": "Schema Valid",
+      "description": "Output matches expected schema",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["document_extraction"]
+    },
+    "syntax_valid": {
+      "name": "Syntax Valid",
+      "description": "Code has valid syntax",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["code_completion"]
+    },
+    "tests_pass": {
+      "name": "Tests Pass",
+      "description": "Percentage of test cases passing",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["code_completion"]
+    },
+    "factual_consistency": {
+      "name": "Factual Consistency",
+      "description": "Summary facts are consistent with source",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["long_summarization"]
+    },
+    "coverage": {
+      "name": "Coverage",
+      "description": "Key points covered in summary",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["long_summarization"]
+    },
+    "evidence_recall": {
+      "name": "Evidence Recall",
+      "description": "Model found relevant evidence sections",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["long_document_qa"]
+    },
+    "answer_accuracy": {
+      "name": "Answer Accuracy",
+      "description": "Final answer correctness",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["multi_document_reasoning"]
+    },
+    "evidence_accuracy": {
+      "name": "Evidence Accuracy",
+      "description": "Found evidence from all documents",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["multi_document_reasoning"]
+    },
+    "reasoning_accuracy": {
+      "name": "Reasoning Accuracy",
+      "description": "Correct synthesis of information",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["multi_document_reasoning"]
+    },
+    "line_accuracy": {
+      "name": "Line Accuracy",
+      "description": "Percentage of lines correctly recognized",
+      "range": [0, 1],
+      "optimal": "max",
+      "domains": ["ocr"]
+    }
+  }
+}
+
+

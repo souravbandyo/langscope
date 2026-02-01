@@ -1,0 +1,9 @@
+# LangScope Algorithm Repository
+# GitHub: https://github.com/souravbandyo/langscope-algorithm.git
+
+# Push Instructions:
+# 1. Stage changes:     git add .
+# 2. Commit:            git commit -m "Your commit message"
+# 3. Push to GitHub:    git push origin main
+#
+# Note: The docs/ folder is excluded via .gitignore

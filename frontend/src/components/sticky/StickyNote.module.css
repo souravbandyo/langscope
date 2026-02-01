@@ -1,0 +1,161 @@
+.stickyNote {
+  position: relative;
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sticky);
+  transform: rotate(var(--rotation, 0deg));
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  font-family: var(--font-main);
+  border: 2px solid var(--color-grid-dark);
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.stickyNote:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  z-index: 10;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* Colors - Very subtle pastel tints */
+.colorYellow {
+  background: #fffef5;
+  border-color: #e0dbc0;
+}
+
+.colorPink {
+  background: #fef8f9;
+  border-color: #e0c8ce;
+}
+
+.colorBlue {
+  background: #f7fafd;
+  border-color: #c0d4e0;
+}
+
+.colorGreen {
+  background: #f8fcf8;
+  border-color: #c0dcc2;
+}
+
+.colorOrange {
+  background: #fffbf5;
+  border-color: #e0d4c0;
+}
+
+/* Sizes */
+.sizeSm {
+  width: 140px;
+  min-height: 90px;
+  padding: var(--spacing-sm);
+}
+
+.sizeMd {
+  width: 180px;
+  min-height: 140px;
+  padding: var(--spacing-sm);
+}
+
+.sizeLg {
+  width: 220px;
+  min-height: 170px;
+  padding: var(--spacing-md);
+}
+
+/* Pin */
+.pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.pinHead {
+  width: 14px;
+  height: 14px;
+  background: #555;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.title {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin-bottom: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px dashed #ccc;
+}
+
+/* Content */
+.content {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--color-ink);
+  overflow: hidden;
+}
+
+/* Alert content */
+.alertContent {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+}
+
+.alertIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Leaderboard content */
+.leaderboardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.domainTag {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  color: var(--color-ink-light);
+}
+
+.leaderboardList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.leaderboardEntry {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+  font-size: 0.85rem;
+}
+
+.rank {
+  font-weight: 600;
+  min-width: 1.5em;
+}
+
+.name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.score {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  color: var(--color-pencil);
+}

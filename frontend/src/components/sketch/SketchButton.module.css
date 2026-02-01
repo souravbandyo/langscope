@@ -1,0 +1,70 @@
+.sketchButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--color-ink);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.sketchButton:hover:not(.disabled) {
+  transform: scale(1.02);
+}
+
+.sketchButton:active:not(.disabled) {
+  transform: scale(0.98);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* Sizes */
+.sizeSm {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 1rem;
+  min-width: 60px;
+  min-height: 32px;
+}
+
+.sizeMd {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 1.25rem;
+  min-width: 80px;
+  min-height: 42px;
+}
+
+.sizeLg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: 1.4rem;
+  min-width: 100px;
+  min-height: 52px;
+}
+
+/* Variants */
+.primary {
+  color: white;
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.6);
+}
+
+/* States */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

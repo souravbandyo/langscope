@@ -1,0 +1,135 @@
+/* Trending Domains - matches test.html .sidebar-right styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin: 0 0 12px 0;
+}
+
+.loading,
+.error {
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: #666;
+  padding: var(--spacing-sm);
+}
+
+.retryButton {
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  color: #856404;
+  background: #fff3cd;
+  border: 1px dashed #856404;
+  border-radius: 4px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  cursor: pointer;
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.retryButton:hover {
+  background: #ffe69c;
+}
+
+.domainList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Domain Card - matches test.html .domain-item */
+.domainCard {
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-main);
+  transition: all var(--transition-fast);
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.domainCard:nth-child(5n+1) {
+  background: #fffef5;
+}
+
+.domainCard:nth-child(5n+2) {
+  background: #fef8f9;
+}
+
+.domainCard:nth-child(5n+3) {
+  background: #f7fafd;
+}
+
+.domainCard:nth-child(5n+4) {
+  background: #f8fcf8;
+}
+
+.domainCard:nth-child(5n) {
+  background: #fffbf5;
+}
+
+.domainCard:hover {
+  transform: scale(1.01);
+  background: #f0f7ff;
+}
+
+/* Domain Title - matches test.html .domain-title */
+.domainTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: var(--color-ink);
+}
+
+/* Domain Stats - matches test.html .domain-stats */
+.domainStats {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Domain Icon - matches test.html .domain-icon */
+.domainIcon {
+  font-size: 1.4rem;
+  margin-right: 8px;
+  width: 24px;
+  text-align: center;
+}
+
+/* Stats Text - matches test.html .stats-text */
+.statsText {
+  line-height: 1.1;
+  font-size: 0.8rem;
+}
+
+/* Arrow - matches test.html .arrow-icon */
+.arrow {
+  margin-left: auto;
+  font-size: 1rem;
+  transition: transform var(--transition-fast);
+}
+
+.domainCard:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .domainList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--spacing-sm);
+  }
+}

@@ -1,0 +1,308 @@
+.benchmarks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  font-family: var(--font-main);
+  color: #666;
+  margin-top: calc(-1 * var(--spacing-md));
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.filterLabel {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.select {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #f7fafd;
+  border: 2px solid #c0d4e0;
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  background: white;
+}
+
+/* Layout */
+.content {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--spacing-lg);
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Definitions Card */
+.definitionsCard {
+  height: fit-content;
+}
+
+.benchmarkList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.benchmarkItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-sm);
+  background: #fefefe;
+  border: 1px solid #e8e8e8;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.benchmarkItem:nth-child(4n+1) {
+  background: #fffef5;
+  border-color: #e0dbc0;
+}
+
+.benchmarkItem:nth-child(4n+2) {
+  background: #fef8f9;
+  border-color: #e0c8ce;
+}
+
+.benchmarkItem:nth-child(4n+3) {
+  background: #f7fafd;
+  border-color: #c0d4e0;
+}
+
+.benchmarkItem:nth-child(4n) {
+  background: #f8fcf8;
+  border-color: #c0dcc2;
+}
+
+.benchmarkItem:hover {
+  background: #f0f7ff;
+}
+
+.benchmarkItem.selected {
+  background: rgba(74, 144, 217, 0.1);
+  border-color: var(--color-accent);
+}
+
+.benchmarkName {
+  font-family: var(--font-main);
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.benchmarkMeta {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.benchmarkCategory,
+.benchmarkMetric {
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Section */
+.sectionTitle {
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Loading/Error/Empty States */
+.loading,
+.error,
+.empty {
+  font-family: var(--font-main);
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: #666;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-main);
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.table th {
+  font-family: var(--font-main);
+  font-weight: bold;
+  font-size: 1rem;
+  color: #555;
+  background: #f7fafd;
+}
+
+.tableRow {
+  transition: background var(--transition-fast);
+}
+
+.tableRow:nth-child(even) {
+  background: #fefefe;
+}
+
+.tableRow:nth-child(odd) {
+  background: #fcfcfc;
+}
+
+.tableRow:hover {
+  background: #f0f7ff;
+}
+
+.rank {
+  width: 60px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.medal {
+  font-size: 1.25rem;
+}
+
+.modelName {
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.score {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.percentile {
+  text-align: right;
+}
+
+.percentileBadge {
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: #f8fcf8;
+  border: 1px solid #c0dcc2;
+  border-radius: var(--radius-sm);
+}
+
+/* Correlations */
+.correlationsCard {
+  margin-top: var(--spacing-md);
+}
+
+.correlationInfo {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: var(--spacing-md);
+}
+
+.correlationsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.correlationItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.dimensionName {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  min-width: 140px;
+  text-transform: capitalize;
+}
+
+.correlationBar {
+  flex: 1;
+  height: 8px;
+  background: #e5e5e5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.correlationFill {
+  height: 100%;
+  background: #333;
+  border-radius: 4px;
+  transition: width var(--transition-normal);
+}
+
+.correlationValue {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  min-width: 50px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.correlationValue.positive {
+  color: #2d2d2d;
+}
+
+.correlationValue.negative {
+  color: #888;
+}
+
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .definitionsCard {
+    order: 1;
+  }
+
+  .mainContent {
+    order: 0;
+  }
+}

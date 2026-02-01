@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.label {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: var(--color-ink);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  height: 48px;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.icon {
+  position: absolute;
+  left: var(--spacing-md);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  color: #555;
+  font-size: 1.4rem;
+}
+
+.input {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: #333;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.hasIcon {
+  padding-left: calc(var(--spacing-md) + 1.5rem + var(--spacing-sm));
+}
+
+.error {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: #555;
+}

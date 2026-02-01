@@ -1,0 +1,16 @@
+.section {
+  padding: var(--spacing-md) 0;
+}
+
+.stickyRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .stickyRow {
+    justify-content: center;
+  }
+}

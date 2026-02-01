@@ -1,0 +1,338 @@
+.arena {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.title {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: normal;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  font-family: var(--font-handwriting);
+  font-size: 1.1rem;
+  color: var(--color-pencil);
+  margin-top: calc(-1 * var(--spacing-md));
+}
+
+/* Setup Form */
+.setupForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  max-width: 600px;
+}
+
+.sectionTitle {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: var(--color-ink);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.label {
+  font-family: var(--font-handwriting);
+  font-size: 1rem;
+  color: var(--color-pencil);
+}
+
+.select {
+  font-family: var(--font-handwriting);
+  font-size: 1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #f8fcf8;
+  border: 2px solid #c0dcc2;
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  background: white;
+}
+
+.warning {
+  font-family: var(--font-handwriting);
+  font-size: 0.9rem;
+  color: #856404;
+  background: #fff3cd;
+  border: 1px dashed #856404;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.retryLink {
+  background: none;
+  border: none;
+  color: #0056b3;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.loadingText {
+  font-family: var(--font-handwriting);
+  color: var(--color-pencil);
+  padding: var(--spacing-sm);
+}
+
+.error {
+  font-family: var(--font-handwriting);
+  font-size: 0.9rem;
+  color: #721c24;
+  background: #f8d7da;
+  border: 1px dashed #721c24;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+/* Model Selection Grid */
+.modelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-sm);
+  max-height: 300px;
+  overflow-y: auto;
+  padding: var(--spacing-sm);
+  background: var(--color-paper);
+  border: 1px solid var(--color-grid-dark);
+  border-radius: var(--radius-md);
+}
+
+.modelCheckbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: #fefefe;
+  border: 1px solid var(--color-grid);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.modelCheckbox:nth-child(4n+1) {
+  background: #fffef5;
+  border-color: #e0dbc0;
+}
+
+.modelCheckbox:nth-child(4n+2) {
+  background: #fef8f9;
+  border-color: #e0c8ce;
+}
+
+.modelCheckbox:nth-child(4n+3) {
+  background: #f7fafd;
+  border-color: #c0d4e0;
+}
+
+.modelCheckbox:nth-child(4n) {
+  background: #f8fcf8;
+  border-color: #c0dcc2;
+}
+
+.modelCheckbox:hover {
+  background: #f0f7ff;
+  border-color: var(--color-grid-dark);
+}
+
+.modelCheckbox input[type="checkbox"] {
+  accent-color: var(--color-accent);
+  width: 16px;
+  height: 16px;
+}
+
+.modelName {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: var(--color-ink);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modelProvider {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  color: var(--color-pencil);
+  padding: 2px 6px;
+  background: #f7fafd;
+  border: 1px solid #c0d4e0;
+  border-radius: 3px;
+}
+
+.selectedCount {
+  font-family: var(--font-handwriting);
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin-top: var(--spacing-xs);
+}
+
+/* Battle */
+.battleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.battleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.battleProgress {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  color: var(--color-accent);
+}
+
+.domain {
+  font-family: var(--font-handwriting);
+  font-size: 1rem;
+  color: var(--color-pencil);
+}
+
+.modelHint {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  color: var(--color-pencil);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.predictionHint {
+  font-family: var(--font-handwriting);
+  font-size: 0.9rem;
+  color: var(--color-pencil);
+  margin: 0;
+}
+
+.prompt {
+  display: flex;
+  justify-content: center;
+}
+
+.responses {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.responseCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.responseTitle {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: normal;
+  color: var(--color-ink);
+}
+
+.responseContent {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  background: var(--color-paper-alt);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.rankSelect {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: var(--font-handwriting);
+}
+
+.rankDropdown {
+  font-family: var(--font-handwriting);
+  font-size: 1rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-grid-dark);
+  border-radius: var(--radius-md);
+}
+
+.battleActions {
+  display: flex;
+  justify-content: center;
+}
+
+/* Results */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+}
+
+.resultStats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.resultStats p {
+  margin: 0;
+}
+
+.rankingList {
+  font-family: var(--font-handwriting);
+  font-size: 1.1rem;
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.rankingList li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.delta {
+  font-family: var(--font-accent);
+  color: var(--color-success);
+  margin-left: var(--spacing-sm);
+}
+
+.deltaNeg {
+  font-family: var(--font-accent);
+  color: var(--color-error);
+  margin-left: var(--spacing-sm);
+}
+
+.sessionMeta {
+  font-family: var(--font-handwriting);
+  font-size: 0.9rem;
+  color: var(--color-pencil);
+  margin-bottom: var(--spacing-lg);
+}
+
+.sessionMeta p {
+  margin: var(--spacing-xs) 0;
+}
+
+@media (max-width: 768px) {
+  .responses {
+    grid-template-columns: 1fr;
+  }
+}

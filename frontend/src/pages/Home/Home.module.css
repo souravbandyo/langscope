@@ -1,0 +1,84 @@
+/* Home page - matches test.html styling */
+.home {
+  display: flex;
+  gap: var(--spacing-lg);
+  min-height: calc(100vh - 80px);
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 40px;
+  overflow-y: auto;
+}
+
+/* Hero Section */
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  text-align: center;
+}
+
+.logo {
+  margin-bottom: 8px;
+}
+
+.logoFrame {
+  position: relative;
+  padding: 0;
+}
+
+.logoImage {
+  max-width: 220px;
+  height: auto;
+  display: block;
+}
+
+/* Tagline - matches test.html .subtitle */
+.tagline {
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  color: var(--color-ink);
+  margin-bottom: 10px;
+}
+
+/* Trending Sidebar - matches test.html .sidebar-right */
+.trendingSidebar {
+  width: 280px;
+  flex-shrink: 0;
+  padding: 20px 16px;
+  position: relative;
+  overflow-y: auto;
+}
+
+@media (max-width: 1024px) {
+  .home {
+    flex-direction: column;
+  }
+
+  .trendingSidebar {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 20px;
+  }
+
+  .heroSection {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .logoImage {
+    max-width: 200px;
+  }
+
+  .tagline {
+    font-size: 1.4rem;
+  }
+}

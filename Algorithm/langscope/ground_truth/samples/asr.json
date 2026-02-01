@@ -1,0 +1,102 @@
+{
+  "domain": "asr",
+  "version": "1.0.0",
+  "description": "ASR (Automatic Speech Recognition) samples for transcription evaluation",
+  "data_source": "Curated from LibriSpeech",
+  "samples": [
+    {
+      "sample_id": "asr_clean_001",
+      "category": "clean",
+      "difficulty": "easy",
+      "audio_path": "audio/librispeech_clean_001.wav",
+      "expected_transcript": "The quick brown fox jumps over the lazy dog.",
+      "language": "en",
+      "speaker_id": "spk_001",
+      "duration_seconds": 3.2,
+      "snr_db": 35.0
+    },
+    {
+      "sample_id": "asr_clean_002",
+      "category": "clean",
+      "difficulty": "easy",
+      "audio_path": "audio/librispeech_clean_002.wav",
+      "expected_transcript": "To be or not to be, that is the question.",
+      "language": "en",
+      "speaker_id": "spk_002",
+      "duration_seconds": 2.8,
+      "snr_db": 38.0
+    },
+    {
+      "sample_id": "asr_clean_003",
+      "category": "clean",
+      "difficulty": "easy",
+      "audio_path": "audio/librispeech_clean_003.wav",
+      "expected_transcript": "The early bird catches the worm, but the second mouse gets the cheese.",
+      "language": "en",
+      "speaker_id": "spk_003",
+      "duration_seconds": 4.5,
+      "snr_db": 32.0
+    },
+    {
+      "sample_id": "asr_noisy_001",
+      "category": "noisy",
+      "difficulty": "medium",
+      "audio_path": "audio/librispeech_noisy_001.wav",
+      "expected_transcript": "Machine learning has revolutionized the field of artificial intelligence.",
+      "language": "en",
+      "speaker_id": "spk_004",
+      "duration_seconds": 4.1,
+      "snr_db": 15.0,
+      "noise_type": "background_chatter"
+    },
+    {
+      "sample_id": "asr_noisy_002",
+      "category": "noisy",
+      "difficulty": "medium",
+      "audio_path": "audio/librispeech_noisy_002.wav",
+      "expected_transcript": "Natural language processing enables computers to understand human speech.",
+      "language": "en",
+      "speaker_id": "spk_005",
+      "duration_seconds": 4.8,
+      "snr_db": 12.0,
+      "noise_type": "traffic"
+    },
+    {
+      "sample_id": "asr_accented_001",
+      "category": "accented",
+      "difficulty": "medium",
+      "audio_path": "audio/accented_british_001.wav",
+      "expected_transcript": "The weather in London is quite unpredictable this time of year.",
+      "language": "en",
+      "accent": "british",
+      "speaker_id": "spk_006",
+      "duration_seconds": 3.9,
+      "snr_db": 28.0
+    },
+    {
+      "sample_id": "asr_technical_001",
+      "category": "technical",
+      "difficulty": "hard",
+      "audio_path": "audio/technical_medical_001.wav",
+      "expected_transcript": "The patient presented with bilateral pneumonia and acute respiratory distress syndrome.",
+      "language": "en",
+      "speaker_id": "spk_007",
+      "duration_seconds": 5.2,
+      "snr_db": 30.0,
+      "vocabulary": "medical"
+    },
+    {
+      "sample_id": "asr_long_001",
+      "category": "long",
+      "difficulty": "hard",
+      "audio_path": "audio/long_paragraph_001.wav",
+      "expected_transcript": "Artificial intelligence research has made remarkable progress in recent years. Deep learning models can now perform tasks that were previously thought to require human-level intelligence. From image recognition to natural language understanding, these systems continue to improve at an unprecedented rate.",
+      "language": "en",
+      "speaker_id": "spk_008",
+      "duration_seconds": 18.5,
+      "snr_db": 25.0
+    }
+  ]
+}
+
+

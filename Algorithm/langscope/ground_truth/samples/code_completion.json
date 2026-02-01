@@ -1,0 +1,121 @@
+{
+  "domain": "code_completion",
+  "version": "1.0.0",
+  "description": "Code completion samples curated from HumanEval and MBPP",
+  "data_sources": ["HumanEval", "MBPP"],
+  "samples": [
+    {
+      "sample_id": "code_easy_001",
+      "category": "function",
+      "difficulty": "easy",
+      "language": "python",
+      "prompt": "Write a function that returns the sum of two numbers.",
+      "expected_code": "def add(a, b):\n    return a + b",
+      "test_cases": [
+        {"input": "add(1, 2)", "expected": "3"},
+        {"input": "add(0, 0)", "expected": "0"},
+        {"input": "add(-1, 1)", "expected": "0"},
+        {"input": "add(100, 200)", "expected": "300"}
+      ],
+      "function_name": "add"
+    },
+    {
+      "sample_id": "code_easy_002",
+      "category": "function",
+      "difficulty": "easy",
+      "language": "python",
+      "prompt": "Write a function that returns the factorial of a non-negative integer.",
+      "expected_code": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)",
+      "test_cases": [
+        {"input": "factorial(0)", "expected": "1"},
+        {"input": "factorial(1)", "expected": "1"},
+        {"input": "factorial(5)", "expected": "120"},
+        {"input": "factorial(10)", "expected": "3628800"}
+      ],
+      "function_name": "factorial"
+    },
+    {
+      "sample_id": "code_medium_001",
+      "category": "function",
+      "difficulty": "medium",
+      "language": "python",
+      "prompt": "Write a function that checks if a string is a palindrome (case-insensitive, ignoring non-alphanumeric characters).",
+      "expected_code": "def is_palindrome(s):\n    s = ''.join(c.lower() for c in s if c.isalnum())\n    return s == s[::-1]",
+      "test_cases": [
+        {"input": "is_palindrome('A man a plan a canal Panama')", "expected": "True"},
+        {"input": "is_palindrome('race a car')", "expected": "False"},
+        {"input": "is_palindrome('')", "expected": "True"},
+        {"input": "is_palindrome('Was it a car or a cat I saw?')", "expected": "True"}
+      ],
+      "function_name": "is_palindrome"
+    },
+    {
+      "sample_id": "code_medium_002",
+      "category": "algorithm",
+      "difficulty": "medium",
+      "language": "python",
+      "prompt": "Write a function that finds the longest common prefix among a list of strings.",
+      "expected_code": "def longest_common_prefix(strs):\n    if not strs:\n        return ''\n    prefix = strs[0]\n    for s in strs[1:]:\n        while not s.startswith(prefix):\n            prefix = prefix[:-1]\n            if not prefix:\n                return ''\n    return prefix",
+      "test_cases": [
+        {"input": "longest_common_prefix(['flower', 'flow', 'flight'])", "expected": "'fl'"},
+        {"input": "longest_common_prefix(['dog', 'racecar', 'car'])", "expected": "''"},
+        {"input": "longest_common_prefix(['interspecies', 'interstellar', 'interstate'])", "expected": "'inters'"},
+        {"input": "longest_common_prefix([''])", "expected": "''"}
+      ],
+      "function_name": "longest_common_prefix"
+    },
+    {
+      "sample_id": "code_medium_003",
+      "category": "data_structure",
+      "difficulty": "medium",
+      "language": "python",
+      "prompt": "Write a function that reverses a linked list and returns the new head.",
+      "expected_code": "def reverse_linked_list(head):\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev",
+      "test_cases": [
+        {"assert": "reverse_linked_list(None) is None"}
+      ],
+      "function_name": "reverse_linked_list"
+    },
+    {
+      "sample_id": "code_hard_001",
+      "category": "algorithm",
+      "difficulty": "hard",
+      "language": "python",
+      "prompt": "Write a function that finds all permutations of a string.",
+      "expected_code": "def permutations(s):\n    if len(s) <= 1:\n        return [s]\n    result = []\n    for i, c in enumerate(s):\n        for perm in permutations(s[:i] + s[i+1:]):\n            result.append(c + perm)\n    return result",
+      "test_cases": [
+        {"input": "sorted(permutations('ab'))", "expected": "['ab', 'ba']"},
+        {"input": "len(permutations('abc'))", "expected": "6"},
+        {"input": "permutations('')", "expected": "['']"}
+      ],
+      "function_name": "permutations"
+    },
+    {
+      "sample_id": "code_hard_002",
+      "category": "dynamic_programming",
+      "difficulty": "hard",
+      "language": "python",
+      "prompt": "Write a function that finds the length of the longest increasing subsequence in an array.",
+      "expected_code": "def longest_increasing_subsequence(nums):\n    if not nums:\n        return 0\n    dp = [1] * len(nums)\n    for i in range(1, len(nums)):\n        for j in range(i):\n            if nums[j] < nums[i]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    return max(dp)",
+      "test_cases": [
+        {"input": "longest_increasing_subsequence([10, 9, 2, 5, 3, 7, 101, 18])", "expected": "4"},
+        {"input": "longest_increasing_subsequence([0, 1, 0, 3, 2, 3])", "expected": "4"},
+        {"input": "longest_increasing_subsequence([7, 7, 7, 7])", "expected": "1"},
+        {"input": "longest_increasing_subsequence([])", "expected": "0"}
+      ],
+      "function_name": "longest_increasing_subsequence"
+    },
+    {
+      "sample_id": "code_hard_003",
+      "category": "tree",
+      "difficulty": "hard",
+      "language": "python",
+      "prompt": "Write a function that finds the lowest common ancestor of two nodes in a binary tree.",
+      "expected_code": "def lowest_common_ancestor(root, p, q):\n    if not root or root == p or root == q:\n        return root\n    left = lowest_common_ancestor(root.left, p, q)\n    right = lowest_common_ancestor(root.right, p, q)\n    if left and right:\n        return root\n    return left if left else right",
+      "test_cases": [],
+      "function_name": "lowest_common_ancestor"
+    }
+  ]
+}
+
+

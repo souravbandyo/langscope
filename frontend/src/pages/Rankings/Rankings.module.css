@@ -1,0 +1,157 @@
+.rankings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.filterLabel {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.select {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #f7fafd;
+  border: 2px solid #c0d4e0;
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  background: white;
+}
+
+/* Loading/Error/Empty States */
+.loading,
+.error,
+.empty {
+  font-family: var(--font-main);
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: #666;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-main);
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.table th {
+  font-family: var(--font-main);
+  font-weight: bold;
+  font-size: 1rem;
+  color: #555;
+  background: #f7fafd;
+}
+
+.tableRow {
+  transition: background var(--transition-fast);
+}
+
+.tableRow:nth-child(even) {
+  background: #fefefe;
+}
+
+.tableRow:nth-child(odd) {
+  background: #fcfcfc;
+}
+
+.tableRow:hover {
+  background: #f0f7ff;
+}
+
+.rank {
+  width: 60px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.medal {
+  font-size: 1.25rem;
+}
+
+.modelName {
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.modelLink {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  color: var(--color-ink);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--transition-fast);
+}
+
+.modelLink:hover {
+  color: var(--color-accent, #0066cc);
+  text-decoration: underline;
+}
+
+.provider {
+  color: #666;
+}
+
+.rating {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.matches {
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+    display: none;
+  }
+}

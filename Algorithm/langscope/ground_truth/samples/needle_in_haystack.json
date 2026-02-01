@@ -1,0 +1,105 @@
+{
+  "domain": "needle_in_haystack",
+  "version": "1.0.0",
+  "description": "Needle in Haystack samples for testing long context retrieval",
+  "samples": [
+    {
+      "sample_id": "needle_4k_begin_001",
+      "category": "code",
+      "difficulty": "easy",
+      "context_length": 4096,
+      "needle_position": 0.1,
+      "needle": "The authorization code for the secret project is X7-DELTA-9.",
+      "question": "What is the authorization code for the secret project?",
+      "expected_answer": "X7-DELTA-9",
+      "answer_variants": ["X7 DELTA 9", "X7DELTA9", "x7-delta-9"],
+      "language": "en"
+    },
+    {
+      "sample_id": "needle_4k_middle_001",
+      "category": "code",
+      "difficulty": "easy",
+      "context_length": 4096,
+      "needle_position": 0.5,
+      "needle": "The password to access the vault is OMEGA-PRIME-42.",
+      "question": "What is the password to access the vault?",
+      "expected_answer": "OMEGA-PRIME-42",
+      "answer_variants": ["omega-prime-42", "OMEGA PRIME 42"],
+      "language": "en"
+    },
+    {
+      "sample_id": "needle_4k_end_001",
+      "category": "code",
+      "difficulty": "easy",
+      "context_length": 4096,
+      "needle_position": 0.9,
+      "needle": "The secret meeting is scheduled for December 25th at midnight.",
+      "question": "When is the secret meeting scheduled?",
+      "expected_answer": "December 25th at midnight",
+      "answer_variants": ["Dec 25 midnight", "December 25 midnight", "25th December at midnight"],
+      "language": "en"
+    },
+    {
+      "sample_id": "needle_8k_middle_001",
+      "category": "number",
+      "difficulty": "medium",
+      "context_length": 8192,
+      "needle_position": 0.5,
+      "needle": "The winning lottery numbers are 7, 23, 42, 56, 78, 91.",
+      "question": "What are the winning lottery numbers?",
+      "expected_answer": "7, 23, 42, 56, 78, 91",
+      "answer_variants": ["7 23 42 56 78 91", "07, 23, 42, 56, 78, 91"],
+      "language": "en"
+    },
+    {
+      "sample_id": "needle_16k_middle_001",
+      "category": "name",
+      "difficulty": "medium",
+      "context_length": 16384,
+      "needle_position": 0.5,
+      "needle": "The secret agent's real name is Alexander Volkov.",
+      "question": "What is the secret agent's real name?",
+      "expected_answer": "Alexander Volkov",
+      "answer_variants": ["alexander volkov", "Alex Volkov", "A. Volkov"],
+      "language": "en"
+    },
+    {
+      "sample_id": "needle_32k_middle_001",
+      "category": "location",
+      "difficulty": "hard",
+      "context_length": 32768,
+      "needle_position": 0.5,
+      "needle": "The hidden treasure is buried at coordinates 42.3601°N, 71.0589°W near the old oak tree.",
+      "question": "Where is the hidden treasure buried?",
+      "expected_answer": "42.3601°N, 71.0589°W near the old oak tree",
+      "answer_variants": ["42.3601, -71.0589", "coordinates 42.3601°N, 71.0589°W"],
+      "language": "en"
+    },
+    {
+      "sample_id": "needle_64k_deep_001",
+      "category": "code",
+      "difficulty": "hard",
+      "context_length": 65536,
+      "needle_position": 0.75,
+      "needle": "The encryption key is: AES256-KEY-9f8e7d6c5b4a3210.",
+      "question": "What is the encryption key?",
+      "expected_answer": "AES256-KEY-9f8e7d6c5b4a3210",
+      "answer_variants": ["aes256-key-9f8e7d6c5b4a3210"],
+      "language": "en"
+    },
+    {
+      "sample_id": "needle_128k_deep_001",
+      "category": "code",
+      "difficulty": "hard",
+      "context_length": 131072,
+      "needle_position": 0.65,
+      "needle": "The final activation sequence is: BRAVO-ECHO-FOXTROT-9876.",
+      "question": "What is the final activation sequence?",
+      "expected_answer": "BRAVO-ECHO-FOXTROT-9876",
+      "answer_variants": ["bravo echo foxtrot 9876", "BRAVO ECHO FOXTROT 9876"],
+      "language": "en"
+    }
+  ]
+}
+
+

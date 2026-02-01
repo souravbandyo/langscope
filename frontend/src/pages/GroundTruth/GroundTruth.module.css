@@ -1,0 +1,238 @@
+.groundTruth {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  font-family: var(--font-main);
+  color: #666;
+  margin-top: calc(-1 * var(--spacing-md));
+}
+
+/* Domain Grid */
+.domainGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.domainCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-bg);
+  border: 2px solid #e5e5e5;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.domainCard:hover {
+  border-color: #333;
+  transform: translateY(-2px);
+}
+
+.domainCard.selected {
+  border-color: #333;
+  background: #f5f5f5;
+}
+
+.domainIcon {
+  font-size: 2rem;
+}
+
+.domainInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.domainName {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.domainCategory {
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.sampleCount {
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Domain Details */
+.domainDetails {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.infoContent {
+  font-family: var(--font-main);
+  font-size: 1rem;
+}
+
+.infoContent p {
+  margin: var(--spacing-xs) 0;
+}
+
+/* Section */
+.sectionTitle {
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Loading/Error/Empty States */
+.loading,
+.error,
+.empty {
+  font-family: var(--font-main);
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: #666;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-main);
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.table th {
+  font-family: var(--font-main);
+  font-weight: bold;
+  font-size: 1rem;
+  color: #555;
+  background: #fafafa;
+}
+
+.tableRow {
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.tableRow:hover {
+  background: #f5f5f5;
+}
+
+.tableRow.selectedRow {
+  background: #e5e5e5;
+}
+
+.rank {
+  width: 60px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.medal {
+  font-size: 1.25rem;
+}
+
+.modelName {
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.rating {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.score {
+  font-family: var(--font-main);
+  color: #2d2d2d;
+  font-weight: bold;
+}
+
+.evaluations {
+  color: #666;
+}
+
+/* Heatmap */
+.heatmapInfo {
+  font-family: var(--font-main);
+  color: #666;
+  margin-bottom: var(--spacing-md);
+}
+
+.heatmapContainer {
+  overflow-x: auto;
+}
+
+.heatmapGrid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  min-width: 400px;
+}
+
+.heatmapCell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 2px;
+  cursor: help;
+  background: #333;
+}
+
+.heatmapLegend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-sm);
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .domainGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .domainDetails {
+    flex-direction: column;
+  }
+
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+    display: none;
+  }
+}

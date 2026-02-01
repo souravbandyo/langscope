@@ -1,0 +1,110 @@
+{
+  "domain": "visual_qa",
+  "version": "1.0.0",
+  "description": "Visual Question Answering samples from VQA v2 dataset subset",
+  "data_source": "VQA v2",
+  "samples": [
+    {
+      "sample_id": "vqa_counting_001",
+      "category": "counting",
+      "difficulty": "easy",
+      "image_path": "images/vqa_counting_001.jpg",
+      "question": "How many dogs are in the image?",
+      "expected_answer": "3",
+      "answer_variants": ["three", "3 dogs"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_counting_002",
+      "category": "counting",
+      "difficulty": "easy",
+      "image_path": "images/vqa_counting_002.jpg",
+      "question": "How many people are sitting at the table?",
+      "expected_answer": "5",
+      "answer_variants": ["five", "5 people"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_color_001",
+      "category": "color",
+      "difficulty": "easy",
+      "image_path": "images/vqa_color_001.jpg",
+      "question": "What color is the car?",
+      "expected_answer": "red",
+      "answer_variants": ["crimson", "scarlet"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_object_001",
+      "category": "object",
+      "difficulty": "medium",
+      "image_path": "images/vqa_object_001.jpg",
+      "question": "What is the person holding in their right hand?",
+      "expected_answer": "umbrella",
+      "answer_variants": ["an umbrella", "black umbrella"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_scene_001",
+      "category": "scene",
+      "difficulty": "medium",
+      "image_path": "images/vqa_scene_001.jpg",
+      "question": "What is the weather like in this image?",
+      "expected_answer": "sunny",
+      "answer_variants": ["clear", "bright", "sunny day"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_action_001",
+      "category": "action",
+      "difficulty": "medium",
+      "image_path": "images/vqa_action_001.jpg",
+      "question": "What sport is being played?",
+      "expected_answer": "tennis",
+      "answer_variants": ["playing tennis", "lawn tennis"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_reasoning_001",
+      "category": "reasoning",
+      "difficulty": "hard",
+      "image_path": "images/vqa_reasoning_001.jpg",
+      "question": "Is it likely to rain based on what you see in the image?",
+      "expected_answer": "yes",
+      "answer_variants": ["probably", "likely yes", "it looks like it might rain"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_text_001",
+      "category": "text_reading",
+      "difficulty": "medium",
+      "image_path": "images/vqa_text_001.jpg",
+      "question": "What does the sign say?",
+      "expected_answer": "STOP",
+      "answer_variants": ["stop sign", "Stop"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_spatial_001",
+      "category": "spatial",
+      "difficulty": "hard",
+      "image_path": "images/vqa_spatial_001.jpg",
+      "question": "Is the cat on the left or right side of the dog?",
+      "expected_answer": "left",
+      "answer_variants": ["to the left", "left side"],
+      "language": "en"
+    },
+    {
+      "sample_id": "vqa_comparison_001",
+      "category": "comparison",
+      "difficulty": "hard",
+      "image_path": "images/vqa_comparison_001.jpg",
+      "question": "Which building is taller, the one on the left or the one on the right?",
+      "expected_answer": "right",
+      "answer_variants": ["the one on the right", "right building"],
+      "language": "en"
+    }
+  ]
+}
+
+

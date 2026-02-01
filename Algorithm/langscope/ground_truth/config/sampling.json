@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "default_exclude_recent_days": 7,
+  "stratification_strategies": {
+    "needle_in_haystack": {
+      "dimensions": ["context_length", "needle_position", "needle_type"],
+      "balance_mode": "proportional",
+      "context_length_buckets": [4096, 8192, 16384, 32768, 65536, 131072],
+      "needle_position_buckets": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      "min_samples_per_stratum": 5
+    },
+    "asr": {
+      "dimensions": ["language", "difficulty", "audio_quality"],
+      "balance_mode": "equal",
+      "min_samples_per_stratum": 10
+    },
+    "tts": {
+      "dimensions": ["language", "difficulty", "style"],
+      "balance_mode": "equal",
+      "min_samples_per_stratum": 10
+    },
+    "visual_qa": {
+      "dimensions": ["difficulty", "question_type"],
+      "balance_mode": "equal",
+      "question_types": ["identification", "counting", "comparison", "reasoning"],
+      "min_samples_per_stratum": 10
+    },
+    "document_extraction": {
+      "dimensions": ["difficulty", "document_type"],
+      "balance_mode": "equal",
+      "document_types": ["invoice", "receipt", "form", "id_card"],
+      "min_samples_per_stratum": 10
+    },
+    "code_completion": {
+      "dimensions": ["difficulty", "language", "context_length"],
+      "balance_mode": "proportional",
+      "languages": ["python", "javascript", "typescript"],
+      "min_samples_per_stratum": 10
+    },
+    "long_document_qa": {
+      "dimensions": ["difficulty", "context_length", "document_type"],
+      "balance_mode": "proportional",
+      "min_samples_per_stratum": 5
+    },
+    "long_summarization": {
+      "dimensions": ["difficulty", "context_length"],
+      "balance_mode": "proportional",
+      "min_samples_per_stratum": 5
+    }
+  },
+  "difficulty_levels": ["easy", "medium", "hard"],
+  "coverage_thresholds": {
+    "minimum": 0.7,
+    "target": 0.9,
+    "alert_below": 0.5
+  }
+}
+
+

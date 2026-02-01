@@ -1,0 +1,92 @@
+# LangScope - Multi-domain LLM Evaluation Framework
+# Requirements
+
+# Core dependencies
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Database
+pymongo>=4.5.0
+certifi>=2023.0.0
+
+# Configuration
+python-dotenv>=1.0.0
+
+# Data validation
+pydantic>=2.0.0
+
+# API Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+starlette>=0.35.0
+gunicorn>=21.2.0
+
+# LLM interaction
+litellm>=1.0.0
+
+# LLM Provider SDKs
+openai>=1.0.0                  # OpenAI and XAI (Grok) API
+anthropic>=0.40.0              # Anthropic Claude API
+groq>=0.11.0                   # Groq fast inference API
+huggingface_hub>=0.25.0        # HuggingFace Inference API
+transformers>=4.45.0           # Local HuggingFace models (optional)
+
+# Async support
+aiohttp>=3.8.0
+
+# GraphQL
+strawberry-graphql[fastapi]>=0.219.0
+
+# ========================
+# Ground Truth Evaluation
+# ========================
+
+# ASR/TTS Metrics
+jiwer>=3.0.0                # WER, CER, MER calculations
+openai-whisper>=20231117    # Local Whisper ASR (optional)
+
+# Text Generation Metrics
+rouge-score>=0.1.2          # ROUGE metrics
+sacrebleu>=2.4.0            # BLEU metrics
+nltk>=3.8.0                 # Text processing
+
+# Audio Processing
+torchaudio>=2.0.0           # Audio loading/processing
+speechbrain>=1.0.0          # Speaker embeddings (optional)
+
+# Code Execution (for sandboxed tests)
+docker>=7.0.0               # Docker SDK for sandboxed execution
+
+# ========================
+# Testing
+# ========================
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+httpx>=0.23.0
+
+# Development (optional)
+black>=23.0.0
+isort>=5.12.0
+mypy>=1.0.0
+
+# ========================
+# Prompt Management (PM)
+# ========================
+sentence-transformers>=2.2.0   # Embedding model for domain classification
+
+# ========================
+# Cache Management (C)
+# ========================
+redis>=5.0.0                   # Distributed cache + rate limiting
+qdrant-client>=1.7.0           # Vector database for semantic cache
+motor>=3.0.0                   # Async MongoDB driver
+
+# ========================
+# Authentication (Supabase)
+# ========================
+PyJWT>=2.8.0                   # JWT token verification
+cryptography>=41.0.0           # For JWT RS256 support
+
+

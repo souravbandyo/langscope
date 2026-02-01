@@ -1,0 +1,119 @@
+{
+  "domain": "long_document_qa",
+  "version": "1.0.0",
+  "description": "Long document QA samples for testing document understanding",
+  "samples": [
+    {
+      "sample_id": "doc_qa_legal_001",
+      "category": "legal",
+      "difficulty": "medium",
+      "document_path": "documents/contract_sample_001.txt",
+      "document_length": 8500,
+      "questions": [
+        {
+          "question": "What is the termination notice period specified in the contract?",
+          "expected_answer": "30 days",
+          "answer_variants": ["thirty days", "30 day notice"],
+          "evidence_location": "Section 8.2"
+        },
+        {
+          "question": "What is the maximum liability cap for the service provider?",
+          "expected_answer": "$500,000",
+          "answer_variants": ["500000 dollars", "five hundred thousand dollars"],
+          "evidence_location": "Section 12.1"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "sample_id": "doc_qa_research_001",
+      "category": "research",
+      "difficulty": "hard",
+      "document_path": "documents/research_paper_001.txt",
+      "document_length": 15000,
+      "questions": [
+        {
+          "question": "What was the main finding of the study regarding attention mechanisms?",
+          "expected_answer": "Self-attention mechanisms outperformed recurrent layers in translation quality while being more parallelizable",
+          "answer_variants": [],
+          "evidence_location": "Abstract and Section 6"
+        },
+        {
+          "question": "What benchmark dataset was used to evaluate the model?",
+          "expected_answer": "WMT 2014 English-to-German translation task",
+          "answer_variants": ["WMT 2014", "WMT2014 En-De"],
+          "evidence_location": "Section 5.1"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "sample_id": "doc_qa_technical_001",
+      "category": "technical",
+      "difficulty": "medium",
+      "document_path": "documents/api_documentation_001.txt",
+      "document_length": 12000,
+      "questions": [
+        {
+          "question": "What is the rate limit for the authentication endpoint?",
+          "expected_answer": "100 requests per minute",
+          "answer_variants": ["100/min", "100 req/min"],
+          "evidence_location": "Authentication section"
+        },
+        {
+          "question": "What HTTP status code is returned when a resource is not found?",
+          "expected_answer": "404",
+          "answer_variants": ["404 Not Found", "HTTP 404"],
+          "evidence_location": "Error Codes section"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "sample_id": "doc_qa_financial_001",
+      "category": "financial",
+      "difficulty": "hard",
+      "document_path": "documents/annual_report_001.txt",
+      "document_length": 25000,
+      "questions": [
+        {
+          "question": "What was the company's total revenue for fiscal year 2023?",
+          "expected_answer": "$4.2 billion",
+          "answer_variants": ["4.2B", "$4,200,000,000", "4.2 billion dollars"],
+          "evidence_location": "Financial Highlights"
+        },
+        {
+          "question": "What was the year-over-year revenue growth percentage?",
+          "expected_answer": "15%",
+          "answer_variants": ["15 percent", "fifteen percent"],
+          "evidence_location": "CEO Letter"
+        }
+      ],
+      "language": "en"
+    },
+    {
+      "sample_id": "doc_qa_medical_001",
+      "category": "medical",
+      "difficulty": "hard",
+      "document_path": "documents/clinical_study_001.txt",
+      "document_length": 18000,
+      "questions": [
+        {
+          "question": "What was the primary endpoint of the clinical trial?",
+          "expected_answer": "Overall survival at 24 months",
+          "answer_variants": ["24-month overall survival", "OS at 24 months"],
+          "evidence_location": "Methods section"
+        },
+        {
+          "question": "What was the sample size of the treatment group?",
+          "expected_answer": "450 patients",
+          "answer_variants": ["450", "n=450"],
+          "evidence_location": "Study Population"
+        }
+      ],
+      "language": "en"
+    }
+  ]
+}
+
+

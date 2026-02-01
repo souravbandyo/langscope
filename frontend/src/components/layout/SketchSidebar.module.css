@@ -1,0 +1,173 @@
+/* Hamburger Button - Mobile Only */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1001;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 4px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+/* Overlay - Mobile Only */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+/* Sidebar */
+.sidebar {
+  grid-column: 1;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 160px;
+  min-height: 100vh;
+  background: #fff;
+  z-index: 10;
+}
+
+.topSection {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo Section */
+.logoTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.logoImage {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+}
+
+/* Navigation Menu - matches test.html .nav-menu */
+.navMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navMenu li {
+  font-size: 1.25rem;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.navMenu li:hover {
+  transform: scale(1.02);
+  color: #000;
+}
+
+.navMenu i {
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+.navItem {
+  text-decoration: none !important;
+  color: #2d2d2d;
+}
+
+.navItem:hover {
+  text-decoration: none !important;
+}
+
+.navItem.active li {
+  font-weight: bold;
+}
+
+/* User Menu - matches test.html .user-menu */
+.userMenu {
+  margin-top: auto;
+}
+
+/* Nav Button - for logout button styled as nav item */
+.navButton {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 18px;
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  color: #2d2d2d;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+  text-align: left;
+}
+
+.navButton:hover {
+  transform: scale(1.02);
+  color: #000;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.navButton i {
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .overlay {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: none;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .logoTop {
+    margin-top: 20px;
+  }
+}

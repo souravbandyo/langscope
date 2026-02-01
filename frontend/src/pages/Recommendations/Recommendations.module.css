@@ -1,0 +1,245 @@
+.recommendations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  font-family: var(--font-main);
+  color: #666;
+  margin-top: calc(-1 * var(--spacing-md));
+}
+
+/* Search Section */
+.searchSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.searchBox {
+  display: flex;
+  gap: var(--spacing-sm);
+  max-width: 600px;
+}
+
+.searchInput {
+  flex: 1;
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #f7fafd;
+  border: 2px solid #c0d4e0;
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  background: white;
+}
+
+.searchButton {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: #333;
+  color: white;
+  border: 2px solid #333;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.searchButton:hover {
+  background: #444;
+}
+
+.currentQuery {
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: #666;
+  padding: var(--spacing-xs) 0;
+}
+
+.currentQuery strong {
+  color: var(--color-ink);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.filterLabel {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.select {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #f8fcf8;
+  border: 2px solid #c0dcc2;
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  background: white;
+}
+
+/* Info */
+.infoContent {
+  font-family: var(--font-main);
+  font-size: 1rem;
+}
+
+.infoContent p {
+  margin: var(--spacing-xs) 0;
+}
+
+/* Section */
+.sectionTitle {
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Loading/Error/Empty States */
+.loading,
+.error,
+.empty {
+  font-family: var(--font-main);
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: #666;
+}
+
+.error {
+  color: #555;
+}
+
+/* Recommendations List */
+.recommendationsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.recommendationCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: #fafafa;
+  border-radius: var(--radius-md);
+  border: 2px solid #e5e5e5;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.recommendationCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.rankBadge {
+  font-size: 1.5rem;
+  min-width: 50px;
+  text-align: center;
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+.modelInfo {
+  flex: 1;
+}
+
+.modelName {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.provider {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.scores {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.scoreItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.scoreLabel {
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.scoreValue {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.scoreValue.positive {
+  color: #2d2d2d;
+}
+
+.scoreValue.negative {
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .recommendationCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .scores {
+    width: 100%;
+    justify-content: space-around;
+  }
+}
