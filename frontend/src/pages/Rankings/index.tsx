@@ -1,32 +1,34 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { SketchCard } from '@/components/sketch'
 import { ErrorState, LoadingState, EmptyState } from '@/components/common'
-import { useLeaderboard, useDomains } from '@/api/hooks'
+import { useLeaderboard, useDomains, useModels } from '@/api/hooks'
 import type { RatingDimension } from '@/api/types'
 import styles from './Rankings.module.css'
 
-const dimensions: { id: RatingDimension; name: string }[] = [
-  { id: 'raw_quality', name: 'Raw Quality' },
-  { id: 'cost_adjusted', name: 'Cost Adjusted' },
-  { id: 'latency', name: 'Latency' },
-  { id: 'ttft', name: 'Time to First Token' },
-  { id: 'consistency', name: 'Consistency' },
-  { id: 'token_efficiency', name: 'Token Efficiency' },
-  { id: 'instruction_following', name: 'Instruction Following' },
-  { id: 'hallucination_resistance', name: 'Hallucination Resistance' },
-  { id: 'long_context', name: 'Long Context' },
-  { id: 'combined', name: 'Combined' },
+const dimensions: { id: RatingDimension; name: string; icon: string; description: string }[] = [
+  { id: 'raw_quality', name: 'Raw', icon: 'ph ph-star', description: 'Pure response quality' },
+  { id: 'cost_adjusted', name: 'Cost', icon: 'ph ph-currency-dollar', description: 'Quality per dollar' },
+  { id: 'latency', name: 'Latency', icon: 'ph ph-lightning', description: 'Response speed' },
+  { id: 'ttft', name: 'TTFT', icon: 'ph ph-rocket', description: 'Time to first token' },
+  { id: 'consistency', name: 'Consistent', icon: 'ph ph-target', description: 'Output reliability' },
+  { id: 'token_efficiency', name: 'Efficient', icon: 'ph ph-chart-bar', description: 'Quality per token' },
+  { id: 'instruction_following', name: 'Instruct', icon: 'ph ph-clipboard-text', description: 'Format compliance' },
+  { id: 'hallucination_resistance', name: 'Factual', icon: 'ph ph-check-circle', description: 'Hallucination resistance' },
+  { id: 'long_context', name: 'Context', icon: 'ph ph-books', description: 'Long context quality' },
+  { id: 'combined', name: 'Combined', icon: 'ph ph-trophy', description: 'Weighted aggregate' },
 ]
 
 /**
- * Rankings page with leaderboard table and filters
+ * Rankings page with leaderboard table, dimension tabs, and provider filtering
  */
 export function Rankings() {
   const { domain: urlDomain } = useParams()
   const navigate = useNavigate()
   const [selectedDomain, setSelectedDomain] = useState(urlDomain || '')
   const [selectedDimension, setSelectedDimension] = useState<RatingDimension>('raw_quality')
+  const [selectedProvider, setSelectedProvider] = useState<string>('')
+  const [showBaseModels, setShowBaseModels] = useState(false)
 
   // Update selected domain when URL changes
   useEffect(() => {
@@ -37,13 +39,39 @@ export function Rankings() {
 
   // Fetch domains for filter
   const { data: domainsData } = useDomains()
+  
+  // Fetch models to get provider list
+  const { data: modelsData } = useModels()
 
   // Fetch leaderboard data
   const { data: leaderboardData, isLoading, error, refetch } = useLeaderboard({
     domain: selectedDomain || undefined,
     rankingType: selectedDimension,
-    limit: 50,
+    limit: 100,
   })
+
+  // Extract unique providers from models
+  const providers = useMemo(() => {
+    if (!modelsData?.models) return []
+    const providerSet = new Set(modelsData.models.map((m) => m.provider))
+    return Array.from(providerSet).sort()
+  }, [modelsData])
+
+  // Filter entries by provider
+  const filteredEntries = useMemo(() => {
+    if (!leaderboardData?.entries) return []
+    let entries = leaderboardData.entries
+    
+    if (selectedProvider) {
+      entries = entries.filter((e) => e.provider === selectedProvider)
+    }
+    
+    // Re-rank after filtering
+    return entries.map((entry, index) => ({
+      ...entry,
+      displayRank: index + 1,
+    }))
+  }, [leaderboardData, selectedProvider])
 
   const domainOptions = [
     { id: '', name: 'All Domains' },
@@ -55,7 +83,38 @@ export function Rankings() {
 
   return (
     <div className={styles.rankings}>
-      <h1 className={styles.title}>Rankings</h1>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Rankings</h1>
+        <p className={styles.subtitle}>
+          Compare model performance across 10 dimensions
+        </p>
+      </div>
+
+      {/* Dimension Tabs */}
+      <div className={styles.dimensionTabs}>
+        {dimensions.map((dim) => (
+          <button
+            key={dim.id}
+            className={`${styles.dimensionTab} ${selectedDimension === dim.id ? styles.active : ''}`}
+            onClick={() => setSelectedDimension(dim.id)}
+            title={dim.description}
+          >
+            <i className={`${dim.icon} ${styles.tabIcon}`}></i>
+            <span className={styles.tabName}>{dim.name}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Active dimension description */}
+      <div className={styles.dimensionInfo}>
+        <span className={styles.dimensionLabel}>
+          <i className={dimensions.find((d) => d.id === selectedDimension)?.icon}></i>{' '}
+          {dimensions.find((d) => d.id === selectedDimension)?.name}:
+        </span>
+        <span className={styles.dimensionDesc}>
+          {dimensions.find((d) => d.id === selectedDimension)?.description}
+        </span>
+      </div>
 
       {/* Filters */}
       <div className={styles.filters}>
@@ -75,20 +134,48 @@ export function Rankings() {
         </div>
 
         <div className={styles.filterGroup}>
-          <label className={styles.filterLabel}>Dimension:</label>
+          <label className={styles.filterLabel}>Provider:</label>
           <select
             className={styles.select}
-            value={selectedDimension}
-            onChange={(e) => setSelectedDimension(e.target.value as RatingDimension)}
+            value={selectedProvider}
+            onChange={(e) => setSelectedProvider(e.target.value)}
           >
-            {dimensions.map((d) => (
-              <option key={d.id} value={d.id}>
-                {d.name}
+            <option value="">All Providers</option>
+            {providers.map((p) => (
+              <option key={p} value={p}>
+                {p}
               </option>
             ))}
           </select>
         </div>
+
+        <div className={styles.filterGroup}>
+          <label className={styles.checkboxLabel}>
+            <input
+              type="checkbox"
+              checked={showBaseModels}
+              onChange={(e) => setShowBaseModels(e.target.checked)}
+            />
+            <span>Show base model info</span>
+          </label>
+        </div>
       </div>
+
+      {/* Stats Bar */}
+      {leaderboardData && (
+        <div className={styles.statsBar}>
+          <span className={styles.statItem}>
+            <strong>{filteredEntries.length}</strong> models
+            {selectedProvider && ` from ${selectedProvider}`}
+          </span>
+          <span className={styles.statItem}>
+            Domain: <strong>{selectedDomain || 'All'}</strong>
+          </span>
+          <span className={styles.statItem}>
+            Total evaluations: <strong>{leaderboardData.total || filteredEntries.length}</strong>
+          </span>
+        </div>
+      )}
 
       {/* Leaderboard Table */}
       {isLoading ? (
@@ -106,36 +193,37 @@ export function Rankings() {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th>Rank</th>
-                <th>Model</th>
-                <th>Provider</th>
-                <th>Rating (μ)</th>
-                <th>Matches</th>
+                <th className={styles.thRank}>Rank</th>
+                <th className={styles.thModel}>Model</th>
+                {showBaseModels && <th className={styles.thBase}>Base Model</th>}
+                <th className={styles.thProvider}>Provider</th>
+                <th className={styles.thRating}>Rating (μ)</th>
+                <th className={styles.thUncertainty}>±σ</th>
+                <th className={styles.thConservative}>Conservative</th>
+                <th className={styles.thMatches}>Matches</th>
               </tr>
             </thead>
             <tbody>
-              {leaderboardData?.entries?.length === 0 ? (
+              {filteredEntries.length === 0 ? (
                 <tr>
-                  <td colSpan={5}>
+                  <td colSpan={showBaseModels ? 8 : 7}>
                     <EmptyState
                       title="No rankings available"
                       message="No models have been evaluated for this domain yet."
-                      icon="📊"
+                      icon="ph ph-chart-bar"
                     />
                   </td>
                 </tr>
               ) : (
-                leaderboardData?.entries?.map((entry) => (
+                filteredEntries.map((entry) => (
                   <tr key={entry.model_id} className={styles.tableRow}>
                     <td className={styles.rank}>
-                      {entry.rank <= 3 ? (
-                        <span className={styles.medal}>
-                          {entry.rank === 1 && '🥇'}
-                          {entry.rank === 2 && '🥈'}
-                          {entry.rank === 3 && '🥉'}
+                      {entry.displayRank <= 3 ? (
+                        <span className={`${styles.medal} ${styles[`rank${entry.displayRank}`]}`}>
+                          <i className="ph-fill ph-medal"></i>
                         </span>
                       ) : (
-                        entry.rank
+                        <span className={styles.rankNumber}>{entry.displayRank}</span>
                       )}
                     </td>
                     <td className={styles.modelName}>
@@ -146,8 +234,25 @@ export function Rankings() {
                         {entry.name}
                       </button>
                     </td>
-                    <td className={styles.provider}>{entry.provider}</td>
-                    <td className={styles.rating}>{Math.round(entry.mu)}</td>
+                    {showBaseModels && (
+                      <td className={styles.baseModel}>
+                        {entry.model_id.split('/')[0] || '-'}
+                      </td>
+                    )}
+                    <td className={styles.provider}>
+                      <span className={styles.providerBadge}>{entry.provider}</span>
+                    </td>
+                    <td className={styles.rating}>
+                      <span className={styles.muValue}>{Math.round(entry.mu)}</span>
+                    </td>
+                    <td className={styles.uncertainty}>
+                      <span className={styles.sigmaValue}>±{Math.round(entry.sigma)}</span>
+                    </td>
+                    <td className={styles.conservative}>
+                      <span className={styles.conservativeValue}>
+                        {Math.round(entry.conservative_estimate || entry.mu - 2 * entry.sigma)}
+                      </span>
+                    </td>
                     <td className={styles.matches}>{entry.matches_played}</td>
                   </tr>
                 ))
@@ -156,6 +261,22 @@ export function Rankings() {
           </table>
         </SketchCard>
       )}
+
+      {/* Legend */}
+      <div className={styles.legend}>
+        <div className={styles.legendItem}>
+          <span className={styles.legendLabel}>μ (mu):</span>
+          <span className={styles.legendDesc}>Expected skill rating</span>
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendLabel}>σ (sigma):</span>
+          <span className={styles.legendDesc}>Uncertainty (lower = more confident)</span>
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendLabel}>Conservative:</span>
+          <span className={styles.legendDesc}>μ - 2σ (95% confidence lower bound)</span>
+        </div>
+      </div>
     </div>
   )
 }

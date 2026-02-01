@@ -32,6 +32,9 @@ from langscope.api.middleware import (
 from langscope.api.dependencies import get_db, cleanup, cleanup_async
 from langscope.api.routes import (
     auth_router,
+    users_router,
+    organizations_router,
+    billing_router,
     models_router,
     domains_router,
     matches_router,
@@ -49,6 +52,7 @@ from langscope.api.routes import (
     cache_router,
     ground_truth_router,
     monitoring_router,
+    my_models_router,
 )
 from langscope.graphql import get_graphql_router
 
@@ -161,6 +165,12 @@ Rate limit headers are included in all responses.
     
     # Include routers
     app.include_router(auth_router)
+    
+    # User Profile & Organization
+    app.include_router(users_router)
+    app.include_router(organizations_router)
+    app.include_router(billing_router)
+    
     app.include_router(models_router)
     app.include_router(domains_router)
     app.include_router(matches_router)
@@ -186,6 +196,9 @@ Rate limit headers are included in all responses.
     # Ground Truth & Monitoring
     app.include_router(ground_truth_router)
     app.include_router(monitoring_router)
+    
+    # My Models (Private Testing)
+    app.include_router(my_models_router)
     
     # Phase 15: GraphQL API
     graphql_router = get_graphql_router()

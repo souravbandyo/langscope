@@ -26,13 +26,17 @@
   --color-pencil-light: #999999;
   --color-muted: #888888;
   
-  /* Sticky note colors - Muted monochrome tones */
-  --color-sticky-yellow: #f5f5f0;
-  --color-sticky-yellow-dark: #e8e8e0;
-  --color-sticky-pink: #f0f0f0;
-  --color-sticky-blue: #f5f5f5;
-  --color-sticky-green: #f8f8f8;
-  --color-sticky-orange: #f2f2f2;
+  /* Sticky note colors - Subtle pastels with warmth */
+  --color-sticky-yellow: #fffef5;
+  --color-sticky-yellow-dark: #e0dbc0;
+  --color-sticky-pink: #fef8f9;
+  --color-sticky-pink-dark: #e0c8ce;
+  --color-sticky-blue: #f7fafd;
+  --color-sticky-blue-dark: #c0d4e0;
+  --color-sticky-green: #f8fcf8;
+  --color-sticky-green-dark: #c0dcc2;
+  --color-sticky-orange: #fffbf5;
+  --color-sticky-orange-dark: #e0d4c0;
   
   /* Accent colors - Grayscale */
   --color-highlight: #e0e0e0;
@@ -47,12 +51,14 @@
   --shadow-sketch: 2px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-sticky: 3px 3px 6px rgba(0, 0, 0, 0.08);
   --shadow-hover: 4px 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.3);
   
   /* Fonts - Patrick Hand only */
   --font-main: 'Patrick Hand', cursive;
   --font-handwriting: 'Patrick Hand', cursive;
   --font-title: 'Patrick Hand', cursive;
   --font-accent: 'Patrick Hand', cursive;
+  --font-mono: 'Courier New', monospace;
   
   /* Spacing */
   --grid-size: 20px;
@@ -212,6 +218,7 @@ a:hover {
 .bg-sticky-pink { background-color: var(--color-sticky-pink); }
 .bg-sticky-blue { background-color: var(--color-sticky-blue); }
 .bg-sticky-green { background-color: var(--color-sticky-green); }
+.bg-sticky-orange { background-color: var(--color-sticky-orange); }
 
 /* Scrollbar styling - Minimal */
 ::-webkit-scrollbar {

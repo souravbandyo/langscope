@@ -63,7 +63,7 @@ function DomainLeaderboardSticky({
       <LeaderboardSticky
         title={`#${displayName} Leaderboard`}
         domain={displayName}
-        entries={[{ rank: 1, name: '⚠️ Connection error', score: 0 }]}
+        entries={[{ rank: 1, name: 'Connection error', score: 0 }]}
         color={color}
         rotation={rotation}
         onClick={onClick}

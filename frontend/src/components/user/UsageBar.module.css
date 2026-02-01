@@ -1,0 +1,78 @@
+.container {
+  margin-bottom: var(--spacing-md);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+}
+
+.label {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.values {
+  font-family: var(--font-secondary);
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.percentage {
+  margin-left: var(--spacing-xs);
+  color: #999;
+}
+
+.percentage.warning {
+  color: #e65100;
+}
+
+.percentage.over {
+  color: #c62828;
+}
+
+.track {
+  height: 8px;
+  background: var(--color-grid);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-sticky-green-dark) 0%,
+    var(--color-sticky-blue-dark) 100%
+  );
+  border-radius: 9999px;
+  transition: width var(--transition-normal);
+}
+
+.fillWarning {
+  background: linear-gradient(90deg, #ffb74d 0%, #ff9800 100%);
+}
+
+.fillOver {
+  background: linear-gradient(90deg, #e57373 0%, #f44336 100%);
+}
+
+.hint,
+.hintOver {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+}
+
+.hint {
+  color: #e65100;
+}
+
+.hintOver {
+  color: #c62828;
+}

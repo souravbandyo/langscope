@@ -69,6 +69,10 @@ GROUND_TRUTH_RATINGS_HISTORY_COLLECTION = "ground_truth_ratings_history"
 GROUND_TRUTH_LEADERBOARDS_COLLECTION = "ground_truth_leaderboards"
 GROUND_TRUTH_COVERAGE_COLLECTION = "ground_truth_coverage"
 
+# User Models (Private Testing) collections
+USER_MODELS_COLLECTION = "user_models"
+USER_MODEL_EVALUATIONS_COLLECTION = "user_model_evaluations"
+
 
 class MongoDB:
     """
@@ -1582,6 +1586,201 @@ class MongoDB:
         except Exception as e:
             logger.error(f"Error deleting self-hosted deployment: {e}")
             return False
+    
+    # =========================================================================
+    # User Models (Private Testing)
+    # =========================================================================
+    
+    def get_user_models(
+        self,
+        user_id: str,
+        model_type: str = None,
+        active: bool = None,
+        limit: int = 100
+    ) -> List[Dict[str, Any]]:
+        """
+        Get all user models for a user.
+        
+        Args:
+            user_id: Owner user ID
+            model_type: Optional filter by model type
+            active: Optional filter by active status
+            limit: Maximum results
+        
+        Returns:
+            List of user model documents
+        """
+        if not self.connected or self.db is None:
+            return []
+        
+        try:
+            query: Dict[str, Any] = {"user_id": user_id}
+            if model_type:
+                query["model_type"] = model_type
+            if active is not None:
+                query["is_active"] = active
+            
+            return list(
+                self.db[USER_MODELS_COLLECTION].find(query)
+                .sort("created_at", pymongo.DESCENDING)
+                .limit(limit)
+            )
+        except Exception as e:
+            logger.error(f"Error getting user models: {e}")
+            return []
+    
+    def get_user_model(
+        self,
+        model_id: str
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Get user model by ID.
+        
+        Args:
+            model_id: Model ID
+        
+        Returns:
+            Model document or None
+        """
+        if not self.connected or self.db is None:
+            return None
+        
+        try:
+            return self.db[USER_MODELS_COLLECTION].find_one({"_id": model_id})
+        except Exception as e:
+            logger.error(f"Error getting user model: {e}")
+            return None
+    
+    def save_user_model(
+        self,
+        model: Dict[str, Any]
+    ) -> bool:
+        """
+        Save or update user model.
+        
+        Args:
+            model: Model document
+        
+        Returns:
+            True if saved
+        """
+        if not self.connected or self.db is None:
+            return False
+        
+        try:
+            self.db[USER_MODELS_COLLECTION].replace_one(
+                {"_id": model["_id"]},
+                model,
+                upsert=True
+            )
+            return True
+        except Exception as e:
+            logger.error(f"Error saving user model: {e}")
+            return False
+    
+    def delete_user_model(
+        self,
+        model_id: str,
+        user_id: str = None
+    ) -> bool:
+        """
+        Delete user model.
+        
+        Args:
+            model_id: Model ID
+            user_id: Optional user ID for ownership check
+        
+        Returns:
+            True if deleted
+        """
+        if not self.connected or self.db is None:
+            return False
+        
+        try:
+            query: Dict[str, Any] = {"_id": model_id}
+            if user_id:
+                query["user_id"] = user_id
+            
+            result = self.db[USER_MODELS_COLLECTION].delete_one(query)
+            return result.deleted_count > 0
+        except Exception as e:
+            logger.error(f"Error deleting user model: {e}")
+            return False
+    
+    def get_user_model_evaluations(
+        self,
+        model_id: str,
+        limit: int = 50
+    ) -> List[Dict[str, Any]]:
+        """
+        Get evaluation history for a user model.
+        
+        Args:
+            model_id: Model ID
+            limit: Maximum results
+        
+        Returns:
+            List of evaluation records
+        """
+        if not self.connected or self.db is None:
+            return []
+        
+        try:
+            return list(
+                self.db[USER_MODEL_EVALUATIONS_COLLECTION].find({"model_id": model_id})
+                .sort("timestamp", pymongo.DESCENDING)
+                .limit(limit)
+            )
+        except Exception as e:
+            logger.error(f"Error getting user model evaluations: {e}")
+            return []
+    
+    def save_user_model_evaluation(
+        self,
+        evaluation: Dict[str, Any]
+    ) -> bool:
+        """
+        Save user model evaluation result.
+        
+        Args:
+            evaluation: Evaluation document
+        
+        Returns:
+            True if saved
+        """
+        if not self.connected or self.db is None:
+            return False
+        
+        try:
+            self.db[USER_MODEL_EVALUATIONS_COLLECTION].insert_one(evaluation)
+            return True
+        except Exception as e:
+            logger.error(f"Error saving user model evaluation: {e}")
+            return False
+    
+    def get_evaluation_status(
+        self,
+        evaluation_id: str
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Get evaluation status by ID.
+        
+        Args:
+            evaluation_id: Evaluation ID
+        
+        Returns:
+            Evaluation status or None
+        """
+        if not self.connected or self.db is None:
+            return None
+        
+        try:
+            return self.db[USER_MODEL_EVALUATIONS_COLLECTION].find_one(
+                {"_id": evaluation_id}
+            )
+        except Exception as e:
+            logger.error(f"Error getting evaluation status: {e}")
+            return None
     
     # =========================================================================
     # Phase 11: Deployment Leaderboard

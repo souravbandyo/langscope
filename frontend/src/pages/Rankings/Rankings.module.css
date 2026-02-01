@@ -4,11 +4,113 @@
   gap: var(--spacing-lg);
 }
 
+/* Header */
+.header {
+  margin-bottom: var(--spacing-sm);
+}
+
 .title {
   font-family: var(--font-main);
   font-size: 2rem;
   font-weight: bold;
   color: var(--color-ink);
+  margin-bottom: var(--spacing-xs);
+}
+
+.subtitle {
+  font-family: var(--font-main);
+  font-size: 1.1rem;
+  color: var(--color-pencil);
+}
+
+/* Dimension Tabs */
+.dimensionTabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  padding: var(--spacing-sm);
+  background: var(--color-sticky-blue);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-sticky-blue-dark);
+}
+
+.dimensionTab {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: #555;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.dimensionTab:nth-child(5n+1):not(.active) {
+  background: var(--color-sticky-yellow);
+}
+
+.dimensionTab:nth-child(5n+2):not(.active) {
+  background: var(--color-sticky-pink);
+}
+
+.dimensionTab:nth-child(5n+3):not(.active) {
+  background: var(--color-sticky-green);
+}
+
+.dimensionTab:nth-child(5n+4):not(.active) {
+  background: var(--color-sticky-orange);
+}
+
+.dimensionTab:nth-child(5n):not(.active) {
+  background: white;
+}
+
+.dimensionTab:hover {
+  background: white;
+  border-color: var(--color-sticky-blue-dark);
+  transform: scale(1.02);
+}
+
+.dimensionTab.active {
+  background: white;
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+  font-weight: bold;
+  box-shadow: var(--shadow-sketch);
+}
+
+.tabIcon {
+  font-size: 1rem;
+}
+
+.tabName {
+  white-space: nowrap;
+}
+
+/* Dimension Info */
+.dimensionInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: linear-gradient(135deg, #fff9e6 0%, #fff4cc 100%);
+  border-radius: var(--radius-md);
+  border: 2px solid #f0e6b3;
+}
+
+.dimensionLabel {
+  font-family: var(--font-main);
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.dimensionDesc {
+  font-family: var(--font-main);
+  color: var(--color-pencil);
 }
 
 /* Filters */
@@ -16,6 +118,7 @@
   display: flex;
   gap: var(--spacing-xl);
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .filterGroup {
@@ -26,26 +129,62 @@
 
 .filterLabel {
   font-family: var(--font-main);
-  font-size: 1.1rem;
-  color: #666;
+  font-size: 1rem;
+  color: var(--color-pencil);
 }
 
 .select {
   font-family: var(--font-main);
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding: var(--spacing-sm) var(--spacing-md);
   background: #f7fafd;
   border: 2px solid #c0d4e0;
   border-radius: var(--radius-md);
   color: var(--color-ink);
   cursor: pointer;
-  min-width: 180px;
+  min-width: 160px;
 }
 
 .select:focus {
   outline: none;
   border-color: var(--color-ink);
   background: white;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  color: var(--color-pencil);
+  cursor: pointer;
+}
+
+.checkboxLabel input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Stats Bar */
+.statsBar {
+  display: flex;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #f0f7ff;
+  border-radius: var(--radius-md);
+  border: 1px solid #c0d4e0;
+}
+
+.statItem {
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.statItem strong {
+  color: var(--color-ink);
 }
 
 /* Loading/Error/Empty States */
@@ -55,7 +194,7 @@
   font-family: var(--font-main);
   padding: var(--spacing-xl);
   text-align: center;
-  color: #666;
+  color: var(--color-pencil);
 }
 
 /* Table */
@@ -75,21 +214,60 @@
 .table th {
   font-family: var(--font-main);
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #555;
   background: #f7fafd;
+  white-space: nowrap;
 }
+
+.thRank { width: 60px; text-align: center; }
+.thModel { min-width: 180px; }
+.thBase { min-width: 120px; }
+.thProvider { min-width: 100px; }
+.thRating { width: 100px; text-align: right; }
+.thUncertainty { width: 70px; text-align: center; }
+.thConservative { width: 100px; text-align: right; }
+.thMatches { width: 80px; text-align: center; }
 
 .tableRow {
   transition: background var(--transition-fast);
 }
 
-.tableRow:nth-child(even) {
-  background: #fefefe;
+/* Top 3 get special colored backgrounds */
+.tableRow:nth-child(1) {
+  background: linear-gradient(90deg, #fffef5 0%, #fff9e6 100%);
+  border-left: 3px solid #FFD700;
 }
 
-.tableRow:nth-child(odd) {
-  background: #fcfcfc;
+.tableRow:nth-child(2) {
+  background: linear-gradient(90deg, var(--color-sticky-blue) 0%, #f0f5fa 100%);
+  border-left: 3px solid #C0C0C0;
+}
+
+.tableRow:nth-child(3) {
+  background: linear-gradient(90deg, var(--color-sticky-orange) 0%, #fff8f0 100%);
+  border-left: 3px solid #CD7F32;
+}
+
+/* Alternating pastel backgrounds for rest */
+.tableRow:nth-child(n+4):nth-child(5n+4) {
+  background: var(--color-sticky-yellow);
+}
+
+.tableRow:nth-child(n+4):nth-child(5n) {
+  background: var(--color-sticky-pink);
+}
+
+.tableRow:nth-child(n+4):nth-child(5n+1) {
+  background: var(--color-sticky-blue);
+}
+
+.tableRow:nth-child(n+4):nth-child(5n+2) {
+  background: var(--color-sticky-green);
+}
+
+.tableRow:nth-child(n+4):nth-child(5n+3) {
+  background: var(--color-sticky-orange);
 }
 
 .tableRow:hover {
@@ -97,13 +275,33 @@
 }
 
 .rank {
-  width: 60px;
-  font-weight: bold;
   text-align: center;
+  font-weight: bold;
+}
+
+.rankNumber {
+  display: inline-block;
+  min-width: 28px;
+  padding: 4px 8px;
+  background: #f0f0f0;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
 }
 
 .medal {
   font-size: 1.25rem;
+}
+
+.medal.rank1 {
+  color: #FFD700;
+}
+
+.medal.rank2 {
+  color: #C0C0C0;
+}
+
+.medal.rank3 {
+  color: #CD7F32;
 }
 
 .modelName {
@@ -129,29 +327,133 @@
   text-decoration: underline;
 }
 
+.baseModel {
+  font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+}
+
 .provider {
-  color: #666;
+  text-align: left;
+}
+
+.providerBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #e8f4f8;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: #2a6f97;
+  font-weight: 500;
 }
 
 .rating {
+  text-align: right;
+}
+
+.muValue {
   font-family: var(--font-main);
   font-size: 1.1rem;
   color: #333;
   font-weight: bold;
 }
 
+.uncertainty {
+  text-align: center;
+}
+
+.sigmaValue {
+  font-size: 0.85rem;
+  color: #888;
+  background: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.conservative {
+  text-align: right;
+}
+
+.conservativeValue {
+  font-size: 0.95rem;
+  color: var(--color-pencil);
+}
+
 .matches {
+  text-align: center;
   color: #999;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+  padding: var(--spacing-md);
+  background: var(--color-paper-alt);
+  border-radius: var(--radius-md);
+  border: 1px dashed #ddd;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.legendLabel {
+  font-family: var(--font-main);
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.legendDesc {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  color: #888;
+}
+
+@media (max-width: 1024px) {
+  .dimensionTabs {
+    gap: 2px;
+  }
+
+  .dimensionTab {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.85rem;
+  }
+
+  .tabName {
+    display: none;
+  }
+
+  .tabIcon {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .filters {
     flex-direction: column;
     gap: var(--spacing-md);
+    align-items: flex-start;
   }
 
-  .table th:nth-child(5),
-  .table td:nth-child(5) {
+  .statsBar {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .legend {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  /* Hide less important columns on mobile */
+  .thBase, .baseModel,
+  .thUncertainty, .uncertainty,
+  .thConservative, .conservative {
     display: none;
   }
 }

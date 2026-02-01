@@ -1,0 +1,181 @@
+.card {
+  position: relative;
+  background: white;
+  border: 2px solid var(--color-grid-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.card.popular {
+  border-color: var(--color-sticky-blue-dark);
+  background: var(--color-sticky-blue);
+}
+
+.card.current {
+  border-color: var(--color-ink);
+}
+
+.popularBadge,
+.currentBadge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 12px;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.popularBadge {
+  background: var(--color-sticky-blue-dark);
+  color: #1565c0;
+}
+
+.currentBadge {
+  background: var(--color-ink);
+  color: white;
+}
+
+.header {
+  text-align: center;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-grid);
+  margin-bottom: var(--spacing-md);
+}
+
+.name {
+  font-family: var(--font-main);
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.pricing {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.price {
+  font-family: var(--font-main);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.period {
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  color: #666;
+}
+
+.yearlyPrice {
+  display: block;
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  color: #2e7d32;
+  margin-top: var(--spacing-xs);
+}
+
+/* Features */
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-lg) 0;
+  flex: 1;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+}
+
+.feature i {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.feature.included {
+  color: #333;
+}
+
+.feature.included i {
+  color: #2e7d32;
+}
+
+.feature.excluded {
+  color: #999;
+}
+
+.feature.excluded i {
+  color: #ccc;
+}
+
+/* Select Button */
+.selectButton {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  background: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  color: white;
+}
+
+.selectButton:hover:not(:disabled) {
+  background: #333;
+}
+
+.selectButton.disabled,
+.selectButton:disabled {
+  background: #e0e0e0;
+  border-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.popular .selectButton {
+  background: #1565c0;
+  border-color: #1565c0;
+}
+
+.popular .selectButton:hover:not(:disabled) {
+  background: #0d47a1;
+  border-color: #0d47a1;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.selectButton i.ph-spinner-gap {
+  animation: spin 1s linear infinite;
+}

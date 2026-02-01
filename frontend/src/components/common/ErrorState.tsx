@@ -43,7 +43,7 @@ export function ErrorState({
   if (compact) {
     return (
       <div className={styles.compactError}>
-        <span className={styles.errorIcon}>⚠️</span>
+        <i className={`ph ph-warning ${styles.errorIcon}`}></i>
         <span className={styles.errorText}>{getErrorMessage()}</span>
         {onRetry && (
           <button className={styles.retryButtonSmall} onClick={onRetry}>
@@ -57,7 +57,7 @@ export function ErrorState({
   return (
     <SketchCard padding="lg">
       <div className={styles.errorState}>
-        <div className={styles.errorIcon}>⚠️</div>
+        <i className={`ph ph-warning ${styles.errorIcon}`}></i>
         <h3 className={styles.errorTitle}>{title}</h3>
         <p className={styles.errorMessage}>{getErrorMessage()}</p>
         {onRetry && (
@@ -92,7 +92,7 @@ export function LoadingState({ message = 'Loading...' }: { message?: string }) {
 export function EmptyState({
   title = 'No data available',
   message,
-  icon = '📭',
+  icon = 'ph ph-tray',
 }: {
   title?: string
   message?: string
@@ -100,7 +100,7 @@ export function EmptyState({
 }) {
   return (
     <div className={styles.emptyState}>
-      <div className={styles.emptyIcon}>{icon}</div>
+      <i className={`${icon} ${styles.emptyIcon}`}></i>
       <h3 className={styles.emptyTitle}>{title}</h3>
       {message && <p className={styles.emptyMessage}>{message}</p>}
     </div>

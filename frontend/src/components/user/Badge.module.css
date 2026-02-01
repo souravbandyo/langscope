@@ -1,0 +1,64 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-weight: 600;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+/* Sizes */
+.sm {
+  padding: 2px 8px;
+  font-size: 0.7rem;
+}
+
+.md {
+  padding: 4px 12px;
+  font-size: 0.8rem;
+}
+
+/* Plan Badges */
+.planFree {
+  background: var(--color-sticky-yellow);
+  color: #666;
+  border: 1px solid var(--color-sticky-yellow-dark);
+}
+
+.planPro {
+  background: var(--color-sticky-blue);
+  color: #1565c0;
+  border: 1px solid var(--color-sticky-blue-dark);
+}
+
+.planEnterprise {
+  background: #f3e5f5;
+  color: #7b1fa2;
+  border: 1px solid #ce93d8;
+}
+
+/* Role Badges */
+.roleOwner {
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  color: #f57c00;
+  border: 1px solid #ffca28;
+}
+
+.roleAdmin {
+  background: var(--color-sticky-blue);
+  color: #1565c0;
+  border: 1px solid var(--color-sticky-blue-dark);
+}
+
+.roleMember {
+  background: var(--color-sticky-green);
+  color: #2e7d32;
+  border: 1px solid var(--color-sticky-green-dark);
+}
+
+.roleViewer {
+  background: #f5f5f5;
+  color: #757575;
+  border: 1px solid #e0e0e0;
+}

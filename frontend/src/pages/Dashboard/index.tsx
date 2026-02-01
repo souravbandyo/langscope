@@ -3,6 +3,7 @@ import { PerformanceCharts } from './PerformanceCharts'
 import { TopModelsTable } from './TopModelsTable'
 import { RecentActivity } from './RecentActivity'
 import { SystemHealth } from './SystemHealth'
+import { LedgerVerification } from './LedgerVerification'
 import styles from './Dashboard.module.css'
 
 /**
@@ -30,6 +31,9 @@ export function Dashboard() {
           <SystemHealth />
         </div>
       </div>
+
+      {/* Ledger Verification Section */}
+      <LedgerVerification />
     </div>
   )
 }

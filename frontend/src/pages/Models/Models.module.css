@@ -86,6 +86,32 @@
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+/* Alternating pastel backgrounds for model cards */
+.modelCard:nth-child(5n+1) {
+  background: var(--color-sticky-yellow);
+  border-color: var(--color-sticky-yellow-dark);
+}
+
+.modelCard:nth-child(5n+2) {
+  background: var(--color-sticky-pink);
+  border-color: var(--color-sticky-pink-dark);
+}
+
+.modelCard:nth-child(5n+3) {
+  background: var(--color-sticky-blue);
+  border-color: var(--color-sticky-blue-dark);
+}
+
+.modelCard:nth-child(5n+4) {
+  background: var(--color-sticky-green);
+  border-color: var(--color-sticky-green-dark);
+}
+
+.modelCard:nth-child(5n) {
+  background: var(--color-sticky-orange);
+  border-color: var(--color-sticky-orange-dark);
+}
+
 .modelCard:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);

@@ -1,0 +1,214 @@
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 100px 120px 60px;
+  gap: var(--spacing-md);
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-grid);
+  transition: background var(--transition-fast);
+}
+
+.row:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.memberInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-main);
+  font-weight: bold;
+  font-size: 0.9rem;
+  overflow: hidden;
+  border: 2px solid var(--color-grid-dark);
+  flex-shrink: 0;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.youBadge {
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: normal;
+}
+
+.email {
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Role Cell */
+.roleCell {
+  display: flex;
+  align-items: center;
+}
+
+.roleSelector {
+  position: relative;
+}
+
+.roleButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.roleButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.roleButton i {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.roleDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid var(--color-grid-dark);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+  min-width: 100px;
+}
+
+.roleOption {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition-fast);
+}
+
+.roleOption:hover {
+  background: var(--color-sticky-blue);
+}
+
+.roleOption.active {
+  background: var(--color-sticky-blue);
+}
+
+/* Status Cell */
+.statusCell {
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.status.active {
+  background: var(--color-sticky-green);
+  color: #2e7d32;
+}
+
+.status.pending {
+  background: var(--color-sticky-orange);
+  color: #e65100;
+}
+
+.status.suspended {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Date Cell */
+.dateCell {
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Actions Cell */
+.actionsCell {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.removeButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: #666;
+  transition: all var(--transition-fast);
+}
+
+.removeButton:hover {
+  background: #ffebee;
+  border-color: #ffcdd2;
+  color: #c62828;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr auto auto;
+    gap: var(--spacing-sm);
+  }
+
+  .statusCell,
+  .dateCell {
+    display: none;
+  }
+}

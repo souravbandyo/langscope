@@ -3,6 +3,9 @@ API Routes for LangScope.
 
 Organized by resource type:
 - auth: Authentication and user info
+- users: User profile management
+- organizations: Organization and team management
+- billing: Subscription and billing
 - models: Model CRUD operations
 - domains: Domain CRUD operations
 - matches: Match execution and results
@@ -21,6 +24,9 @@ Organized by resource type:
 """
 
 from langscope.api.routes.auth import router as auth_router
+from langscope.api.routes.users import router as users_router
+from langscope.api.routes.organizations import router as organizations_router
+from langscope.api.routes.billing import router as billing_router
 from langscope.api.routes.models import router as models_router
 from langscope.api.routes.domains import router as domains_router
 from langscope.api.routes.matches import router as matches_router
@@ -38,9 +44,13 @@ from langscope.api.routes.ground_truth import router as ground_truth_router
 from langscope.api.routes.monitoring import router as monitoring_router
 from langscope.api.routes.prompts import router as prompts_router
 from langscope.api.routes.cache import router as cache_router
+from langscope.api.routes.my_models import router as my_models_router
 
 __all__ = [
     "auth_router",
+    "users_router",
+    "organizations_router",
+    "billing_router",
     "models_router",
     "domains_router", 
     "matches_router",
@@ -58,4 +68,5 @@ __all__ = [
     "monitoring_router",
     "prompts_router",
     "cache_router",
+    "my_models_router",
 ]

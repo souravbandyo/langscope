@@ -63,7 +63,7 @@
   background: var(--color-paper, #fdf6e3);
   border: 2px solid var(--color-border, #e2e8f0);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-hover);
   z-index: 101;
   overflow: hidden;
 }

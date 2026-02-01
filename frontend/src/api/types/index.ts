@@ -1078,3 +1078,439 @@ export interface ParamImportResponse {
   skipped_count: number
   errors: string[]
 }
+
+// =============================================================================
+// User Model Types (Private Testing)
+// =============================================================================
+
+/**
+ * Model types supported by the platform
+ */
+export type ModelType = 
+  | 'LLM'
+  | 'ASR'
+  | 'TTS'
+  | 'VLM'
+  | 'V2V'
+  | 'STT'
+  | 'ImageGen'
+  | 'VideoGen'
+  | 'Embedding'
+  | 'Reranker'
+
+/**
+ * API configuration for a user's private model
+ */
+export interface ModelAPIConfig {
+  endpoint: string
+  apiKey?: string  // Stored encrypted, not returned in responses
+  hasApiKey: boolean  // Whether an API key is configured
+  modelId: string
+  apiFormat: 'openai' | 'anthropic' | 'google' | 'custom'
+  headers?: Record<string, string>
+  extraParams?: Record<string, unknown>
+}
+
+/**
+ * Cost configuration for user models
+ */
+export interface ModelCosts {
+  inputCostPerMillion: number
+  outputCostPerMillion: number
+  currency: string
+  isEstimate: boolean
+  notes?: string
+}
+
+/**
+ * Type-specific configuration for different model types
+ */
+export interface ModelTypeSpecificConfig {
+  // ASR/TTS specific
+  language?: string
+  sampleRate?: number
+  // VLM specific
+  imageDetail?: 'auto' | 'low' | 'high'
+  // ImageGen specific
+  imageSize?: string
+  steps?: number
+  guidanceScale?: number
+  // Embedding specific
+  embeddingDimension?: number
+  normalize?: boolean
+  // General
+  maxTokens?: number
+  temperature?: number
+}
+
+/**
+ * User's private model registration
+ */
+export interface UserModel {
+  id: string
+  userId: string
+  name: string
+  description?: string
+  modelType: ModelType
+  version: string
+  baseModelId?: string  // Link to base model if applicable
+  apiConfig: Omit<ModelAPIConfig, 'apiKey'>  // API key not returned
+  typeConfig: ModelTypeSpecificConfig
+  costs: ModelCosts
+  isPublic: boolean
+  isActive: boolean
+  trueskill?: MultiDimensionalTrueSkill
+  groundTruthMetrics?: Record<string, number>
+  totalEvaluations: number
+  domainsEvaluated: string[]
+  lastEvaluatedAt?: string
+  createdAt: string
+  updatedAt: string
+}
+
+/**
+ * Request to create a new user model
+ */
+export interface UserModelCreate {
+  name: string
+  description?: string
+  modelType: ModelType
+  version: string
+  baseModelId?: string
+  apiConfig: ModelAPIConfig
+  typeConfig?: ModelTypeSpecificConfig
+  costs: ModelCosts
+  isPublic?: boolean
+}
+
+/**
+ * Request to update a user model
+ */
+export interface UserModelUpdate {
+  name?: string
+  description?: string
+  version?: string
+  apiConfig?: Partial<ModelAPIConfig>
+  typeConfig?: Partial<ModelTypeSpecificConfig>
+  costs?: Partial<ModelCosts>
+  isPublic?: boolean
+  isActive?: boolean
+}
+
+/**
+ * List response for user models
+ */
+export interface UserModelListResponse {
+  models: UserModel[]
+  total: number
+  byType: Record<ModelType, number>
+}
+
+/**
+ * Performance data for a user model
+ */
+export interface UserModelPerformance {
+  modelId: string
+  modelType: ModelType
+  // TrueSkill scores (for LLM/VLM)
+  trueskill?: MultiDimensionalTrueSkill
+  trueskillByDomain?: Record<string, MultiDimensionalTrueSkill>
+  // Ground truth metrics (type-specific)
+  groundTruthMetrics?: Record<string, number>
+  groundTruthByDomain?: Record<string, Record<string, number>>
+  // Evaluation history
+  evaluationHistory: Array<{
+    timestamp: string
+    domain: string
+    metricType: 'trueskill' | 'ground_truth'
+    scores: Record<string, number>
+  }>
+  // Comparison with public models
+  publicRank?: number
+  publicTotal?: number
+  percentile?: number
+}
+
+/**
+ * Comparison between user models and public leaderboard
+ */
+export interface ModelComparisonEntry {
+  modelId: string
+  name: string
+  isUserModel: boolean
+  modelType: ModelType
+  provider?: string
+  metrics: Record<string, number>
+  rank: number
+  costs?: ModelCosts
+}
+
+export interface ModelComparisonResponse {
+  domain: string
+  modelType: ModelType
+  metric: string
+  entries: ModelComparisonEntry[]
+  userModelIds: string[]
+}
+
+/**
+ * Request to run evaluation on user model
+ */
+export interface RunEvaluationRequest {
+  modelId: string
+  domain: string
+  evaluationType: 'subjective' | 'ground_truth'
+  sampleCount?: number
+  competitors?: string[]  // Model IDs to compete against
+}
+
+/**
+ * Response from running evaluation
+ */
+export interface RunEvaluationResponse {
+  evaluationId: string
+  status: 'queued' | 'running' | 'completed' | 'failed'
+  modelId: string
+  domain: string
+  estimatedDurationMs?: number
+  queuePosition?: number
+}
+
+/**
+ * Evaluation status check
+ */
+export interface EvaluationStatus {
+  evaluationId: string
+  status: 'queued' | 'running' | 'completed' | 'failed'
+  progress?: number  // 0-100
+  currentStep?: string
+  results?: UserModelPerformance
+  error?: string
+}
+
+// =============================================================================
+// User Profile Types
+// =============================================================================
+
+export interface UserProfile {
+  user_id: string
+  email: string
+  display_name?: string
+  avatar_url?: string
+  phone?: string
+  timezone: string
+  language: string
+  organization_id?: string
+  role_in_org?: string
+  plan: 'free' | 'pro' | 'enterprise'
+  created_at?: string
+  updated_at?: string
+}
+
+export interface UpdateProfileRequest {
+  display_name?: string
+  phone?: string
+  timezone?: string
+  language?: string
+}
+
+export interface ChangePasswordRequest {
+  current_password: string
+  new_password: string
+}
+
+export interface Session {
+  session_id: string
+  device: string
+  ip_address: string
+  location?: string
+  last_active: string
+  is_current: boolean
+}
+
+export interface SessionsResponse {
+  sessions: Session[]
+}
+
+export interface AvatarResponse {
+  avatar_url: string
+  message: string
+}
+
+// =============================================================================
+// Organization Types
+// =============================================================================
+
+export interface OrganizationSettings {
+  default_domain?: string
+  allowed_email_domains: string[]
+  sso_enabled: boolean
+}
+
+export interface Organization {
+  id: string
+  name: string
+  slug: string
+  logo_url?: string
+  description?: string
+  website?: string
+  owner_id: string
+  plan: 'free' | 'pro' | 'enterprise'
+  settings: OrganizationSettings
+  created_at: string
+  member_count: number
+}
+
+export interface CreateOrganizationRequest {
+  name: string
+  description?: string
+  website?: string
+}
+
+export interface UpdateOrganizationRequest {
+  name?: string
+  description?: string
+  website?: string
+  settings?: Partial<OrganizationSettings>
+}
+
+export interface TeamMember {
+  id: string
+  user_id: string
+  organization_id: string
+  email: string
+  display_name?: string
+  avatar_url?: string
+  role: 'owner' | 'admin' | 'member' | 'viewer'
+  status: 'active' | 'pending' | 'suspended'
+  joined_at: string
+}
+
+export interface TeamMembersResponse {
+  members: TeamMember[]
+  total: number
+}
+
+export interface InviteMemberRequest {
+  email: string
+  role: 'admin' | 'member' | 'viewer'
+}
+
+export interface UpdateMemberRoleRequest {
+  role: 'admin' | 'member' | 'viewer'
+}
+
+export interface Invitation {
+  id: string
+  organization_id: string
+  organization_name: string
+  email: string
+  role: string
+  invited_by: string
+  invite_code: string
+  expires_at: string
+  status: 'pending' | 'accepted' | 'expired' | 'revoked'
+}
+
+export interface InvitationsResponse {
+  invitations: Invitation[]
+}
+
+export interface JoinOrganizationRequest {
+  invite_code: string
+}
+
+// =============================================================================
+// Billing & Subscription Types
+// =============================================================================
+
+export interface PlanFeatures {
+  evaluations_per_month: number
+  team_members: number
+  api_access: boolean
+  all_domains: boolean
+  custom_domains: boolean
+  priority_support: boolean
+  export_reports: boolean
+  sso_saml: boolean
+  sla_guarantee: boolean
+}
+
+export interface Plan {
+  id: string
+  name: string
+  price_monthly: number
+  price_yearly: number
+  features: PlanFeatures
+  popular: boolean
+}
+
+export interface PlansResponse {
+  plans: Plan[]
+}
+
+export interface UsageStats {
+  evaluations: number
+  evaluations_limit: number
+  api_calls: number
+  api_calls_limit: number
+  team_members: number
+  team_members_limit: number
+  period_start: string
+  period_end: string
+}
+
+export interface Subscription {
+  id: string
+  organization_id: string
+  plan: 'free' | 'pro' | 'enterprise'
+  plan_name: string
+  status: 'active' | 'past_due' | 'canceled' | 'trialing'
+  current_period_start: string
+  current_period_end: string
+  cancel_at_period_end: boolean
+  usage: UsageStats
+}
+
+export interface SubscribeRequest {
+  plan_id: string
+  payment_method_id?: string
+}
+
+export interface ChangePlanRequest {
+  plan_id: string
+}
+
+export interface PaymentMethod {
+  id: string
+  type: 'card' | 'bank_account'
+  last_four: string
+  brand?: string
+  exp_month?: number
+  exp_year?: number
+  is_default: boolean
+}
+
+export interface PaymentMethodsResponse {
+  payment_methods: PaymentMethod[]
+}
+
+export interface AddPaymentMethodRequest {
+  token: string
+}
+
+export interface Invoice {
+  id: string
+  organization_id: string
+  amount: number
+  currency: string
+  status: 'paid' | 'pending' | 'failed'
+  description: string
+  created_at: string
+  pdf_url?: string
+}
+
+export interface InvoicesResponse {
+  invoices: Invoice[]
+  total: number
+}

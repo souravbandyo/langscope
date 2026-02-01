@@ -93,7 +93,7 @@ export function Models() {
         <EmptyState
           title="No models found"
           message="Try adjusting your filters"
-          icon="🔍"
+          icon="ph ph-magnifying-glass"
         />
       ) : (
         <div className={styles.modelsGrid}>

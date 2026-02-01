@@ -27,7 +27,7 @@ export function Benchmarks() {
 
   return (
     <div className={styles.benchmarks}>
-      <h1 className={styles.title}>📊 External Benchmarks</h1>
+      <h1 className={styles.title}>External Benchmarks</h1>
       <p className={styles.subtitle}>
         Standard benchmark results and their correlation with TrueSkill ratings
       </p>
@@ -69,7 +69,7 @@ export function Benchmarks() {
             <EmptyState
               title="No benchmarks found"
               message="Benchmark definitions will appear here when available."
-              icon="📊"
+              icon="ph ph-chart-bar"
             />
           ) : (
             <div className={styles.benchmarkList}>
@@ -124,10 +124,8 @@ export function Benchmarks() {
                     <tr key={entry.base_model_id} className={styles.tableRow}>
                       <td className={styles.rank}>
                         {entry.rank <= 3 ? (
-                          <span className={styles.medal}>
-                            {entry.rank === 1 && '🥇'}
-                            {entry.rank === 2 && '🥈'}
-                            {entry.rank === 3 && '🥉'}
+                          <span className={`${styles.medal} ${styles[`rank${entry.rank}`]}`}>
+                            <i className="ph-fill ph-medal"></i>
                           </span>
                         ) : (
                           entry.rank

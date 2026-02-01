@@ -1,0 +1,335 @@
+.groundTruthInput {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--color-paper-alt, #fafafa);
+  border: 2px dashed var(--color-grid-dark, #d0d0c8);
+  border-radius: var(--radius-md);
+}
+
+/* Toggle Row */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-success, #4caf50);
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-ink, #2d2d2d);
+}
+
+.toggleLabel i {
+  font-size: 1.1rem;
+  color: var(--color-success, #4caf50);
+}
+
+.toggleHint {
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  color: var(--color-pencil, #666);
+  font-style: italic;
+}
+
+/* Content Area */
+.groundTruthContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-grid, #e8e8e0);
+}
+
+/* Input Section */
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-ink, #2d2d2d);
+}
+
+.label i {
+  font-size: 1rem;
+  color: var(--color-pencil, #666);
+}
+
+.textarea {
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  padding: var(--spacing-sm);
+  background: var(--color-paper, #fff);
+  border: 2px solid var(--color-grid-dark, #d0d0c8);
+  border-radius: var(--radius-md);
+  color: var(--color-ink, #2d2d2d);
+  resize: vertical;
+  min-height: 80px;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-ink, #2d2d2d);
+}
+
+.inputHint {
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  color: var(--color-pencil, #666);
+}
+
+/* Normalizer Section */
+.normalizerSection {
+  background: var(--color-paper, #fff);
+  border: 1px solid var(--color-grid-dark, #d0d0c8);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.normalizerHeader {
+  padding: 2px;
+}
+
+.normalizerToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  color: var(--color-ink, #2d2d2d);
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.normalizerToggle:hover {
+  background: var(--color-paper-alt, #fafafa);
+}
+
+.normalizerToggle i {
+  font-size: 1rem;
+  color: var(--color-pencil, #666);
+}
+
+.normalizerBadge {
+  margin-left: auto;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: var(--color-grid, #e8e8e0);
+  border-radius: 10px;
+  color: var(--color-pencil, #666);
+}
+
+.normalizerContent {
+  padding: var(--spacing-sm);
+  border-top: 1px solid var(--color-grid, #e8e8e0);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Options Buttons */
+.normalizerOptions {
+  display: flex;
+  gap: 4px;
+  background: var(--color-grid, #e8e8e0);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.optionButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  color: var(--color-pencil, #666);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.optionButton:hover {
+  color: var(--color-ink, #2d2d2d);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.optionButton.active {
+  background: var(--color-paper, #fff);
+  color: var(--color-ink, #2d2d2d);
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.optionButton i {
+  font-size: 1rem;
+}
+
+/* Code Editor */
+.codeEditor {
+  background: #1e1e1e;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.codeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #2d2d2d;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+.codeLang {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.codeAutoLabel {
+  font-size: 0.7rem;
+  color: #888;
+  background: #3d3d3d;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.codeTextarea {
+  width: 100%;
+  padding: 12px;
+  font-family: var(--font-mono, 'Courier New', monospace);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  background: #1e1e1e;
+  border: none;
+  color: #d4d4d4;
+  resize: vertical;
+  min-height: 150px;
+}
+
+.codeTextarea:focus {
+  outline: none;
+}
+
+.codeTextarea[readonly] {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* Presets */
+.presetSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.presetLabel {
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  color: var(--color-pencil, #666);
+}
+
+.presetButtons {
+  display: flex;
+  gap: 4px;
+}
+
+.presetButton {
+  padding: 4px 10px;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  background: var(--color-paper, #fff);
+  border: 1px solid var(--color-grid-dark, #d0d0c8);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink, #2d2d2d);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.presetButton:hover {
+  border-color: var(--color-ink, #2d2d2d);
+  background: var(--color-paper-alt, #fafafa);
+}
+
+/* Metrics Preview */
+.metricsPreview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: var(--spacing-sm);
+  background: var(--color-paper, #fff);
+  border: 1px solid var(--color-grid, #e8e8e0);
+  border-radius: var(--radius-md);
+}
+
+.metricsLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  color: var(--color-pencil, #666);
+}
+
+.metricsLabel i {
+  font-size: 1rem;
+  color: var(--color-accent, #4a90d9);
+}
+
+.metricsTags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.metricTag {
+  padding: 2px 8px;
+  font-family: var(--font-main);
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: var(--color-accent, #4a90d9);
+  color: white;
+  border-radius: 10px;
+}

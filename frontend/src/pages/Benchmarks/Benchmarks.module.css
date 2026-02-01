@@ -184,12 +184,24 @@
   transition: background var(--transition-fast);
 }
 
-.tableRow:nth-child(even) {
-  background: #fefefe;
+.tableRow:nth-child(5n+1) {
+  background: var(--color-sticky-yellow);
 }
 
-.tableRow:nth-child(odd) {
-  background: #fcfcfc;
+.tableRow:nth-child(5n+2) {
+  background: var(--color-sticky-pink);
+}
+
+.tableRow:nth-child(5n+3) {
+  background: var(--color-sticky-blue);
+}
+
+.tableRow:nth-child(5n+4) {
+  background: var(--color-sticky-green);
+}
+
+.tableRow:nth-child(5n) {
+  background: var(--color-sticky-orange);
 }
 
 .tableRow:hover {
@@ -204,6 +216,18 @@
 
 .medal {
   font-size: 1.25rem;
+}
+
+.medal.rank1 {
+  color: #FFD700;
+}
+
+.medal.rank2 {
+  color: #C0C0C0;
+}
+
+.medal.rank3 {
+  color: #CD7F32;
 }
 
 .modelName {
@@ -234,6 +258,8 @@
 /* Correlations */
 .correlationsCard {
   margin-top: var(--spacing-md);
+  background: var(--color-sticky-blue);
+  border-color: var(--color-sticky-blue-dark);
 }
 
 .correlationInfo {
@@ -272,7 +298,7 @@
 
 .correlationFill {
   height: 100%;
-  background: #333;
+  background: linear-gradient(90deg, var(--color-sticky-green-dark) 0%, #7db38a 100%);
   border-radius: 4px;
   transition: width var(--transition-normal);
 }

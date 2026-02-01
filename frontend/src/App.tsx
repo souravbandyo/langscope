@@ -17,6 +17,7 @@ import { ModelDetail } from '@/pages/Models/ModelDetail'
 import { BaseModels } from '@/pages/BaseModels'
 import { Deployments } from '@/pages/Deployments'
 import { SelfHosted } from '@/pages/SelfHosted'
+import { MyModels } from '@/pages/MyModels'
 import { PromptClassifier } from '@/pages/PromptClassifier'
 import { AdminSettings } from '@/pages/AdminSettings'
 import AuthPage from '@/pages/Auth'
@@ -74,6 +75,9 @@ function App() {
         } />
         <Route path="/self-hosted" element={
           <ProtectedRoute><SelfHosted /></ProtectedRoute>
+        } />
+        <Route path="/my-models" element={
+          <ProtectedRoute><MyModels /></ProtectedRoute>
         } />
         <Route path="/prompt-classifier" element={
           <ProtectedRoute><PromptClassifier /></ProtectedRoute>

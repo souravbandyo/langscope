@@ -34,8 +34,9 @@ export const sketchColors: Record<string, string> = {
 
 export const sketchFonts = {
   handwriting: "'Patrick Hand', cursive",
-  title: "'Architects Daughter', cursive",
-  accent: "'Caveat', cursive",
+  title: "'Patrick Hand', cursive",
+  accent: "'Patrick Hand', cursive",
+  mono: "'Courier New', monospace",
 } as const
 
 /**

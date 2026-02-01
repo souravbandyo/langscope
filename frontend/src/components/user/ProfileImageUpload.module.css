@@ -1,0 +1,166 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  position: relative;
+  border-radius: 50%;
+  background: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  border: 3px solid var(--color-grid-dark);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.avatar:hover {
+  border-color: var(--color-ink);
+  transform: scale(1.02);
+}
+
+.avatar:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.dragging {
+  border-color: var(--color-sticky-blue-dark);
+  background: var(--color-sticky-blue);
+}
+
+.uploading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Sizes */
+.sizeSm {
+  width: 60px;
+  height: 60px;
+  font-size: 1.2rem;
+}
+
+.sizeMd {
+  width: 100px;
+  height: 100px;
+  font-size: 2rem;
+}
+
+.sizeLg {
+  width: 150px;
+  height: 150px;
+  font-size: 3rem;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.initials {
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  color: white;
+}
+
+.avatar:hover .overlay,
+.dragging .overlay,
+.uploading .overlay {
+  opacity: 1;
+}
+
+.overlay i {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.uploading .overlay i {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.overlayText {
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.sizeSm .overlay i {
+  font-size: 1rem;
+}
+
+.sizeSm .overlayText {
+  display: none;
+}
+
+/* File Input (hidden) */
+.fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Remove Button */
+.removeButton {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--color-grid-dark);
+  color: #dc3545;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.removeButton:hover {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.removeButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.removeButton i {
+  font-size: 0.9rem;
+}

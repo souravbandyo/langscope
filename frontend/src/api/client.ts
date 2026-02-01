@@ -10,7 +10,7 @@ interface RequestOptions extends RequestInit {
 }
 
 class ApiClient {
-  private baseUrl: string
+  public baseUrl: string
   private authToken: string | null = null
 
   constructor(baseUrl: string) {
@@ -22,6 +22,13 @@ class ApiClient {
    */
   setAuthToken(token: string | null) {
     this.authToken = token
+  }
+
+  /**
+   * Get the current authentication token
+   */
+  getToken(): string | null {
+    return this.authToken
   }
 
   /**

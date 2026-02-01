@@ -72,6 +72,14 @@ from langscope.core.self_hosted import (
     SelfHostedCosts,
     Owner,
 )
+from langscope.core.user_model import (
+    UserModel,
+    ModelType,
+    APIFormat,
+    ModelAPIConfig,
+    ModelTypeConfig,
+    ModelCosts,
+)
 
 __all__ = [
     # Constants
@@ -138,6 +146,13 @@ __all__ = [
     "SoftwareConfig",
     "SelfHostedCosts",
     "Owner",
+    # User Models (Private Testing)
+    "UserModel",
+    "ModelType",
+    "APIFormat",
+    "ModelAPIConfig",
+    "ModelTypeConfig",
+    "ModelCosts",
 ]
 
 

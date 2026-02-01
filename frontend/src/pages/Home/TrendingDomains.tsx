@@ -156,7 +156,7 @@ export function TrendingDomains() {
 
       {error && (
         <button className={styles.retryButton} onClick={() => refetch()}>
-          ⚠️ Connection issue - Click to retry
+          <i className="ph ph-warning"></i> Connection issue - Click to retry
         </button>
       )}
 

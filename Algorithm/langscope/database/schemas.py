@@ -1229,3 +1229,134 @@ def create_ground_truth_rating_validator() -> Dict[str, Any]:
     }
 
 
+# =============================================================================
+# User Model Document Schema (Private Testing)
+# =============================================================================
+
+USER_MODEL_SCHEMA: Dict[str, Any] = {
+    "_id": str,                            # um_<uuid>
+    "user_id": str,                        # Owner user ID
+    "name": str,                           # Model name
+    "description": str,                    # Optional description
+    "model_type": str,                     # LLM, ASR, TTS, VLM, etc.
+    "version": str,                        # Model version
+    "base_model_id": str,                  # Link to base model (optional)
+    
+    # API Configuration
+    "api_config": {
+        "endpoint": str,                   # API endpoint URL
+        "model_id": str,                   # Model ID for API calls
+        "api_format": str,                 # openai, anthropic, google, custom
+        "api_key_hash": str,               # Hashed API key (not actual key)
+        "has_api_key": bool,
+        "headers": Dict,
+        "extra_params": Dict,
+    },
+    
+    # Type-specific configuration
+    "type_config": {
+        "language": str,                   # For ASR/TTS
+        "sample_rate": int,                # For ASR/TTS
+        "image_detail": str,               # For VLM
+        "image_size": str,                 # For ImageGen
+        "steps": int,                      # For ImageGen/VideoGen
+        "guidance_scale": float,           # For ImageGen/VideoGen
+        "embedding_dimension": int,        # For Embedding
+        "normalize": bool,                 # For Embedding
+        "max_tokens": int,                 # For LLM/VLM
+        "temperature": float,              # For LLM/VLM
+    },
+    
+    # Cost configuration
+    "costs": {
+        "input_cost_per_million": float,
+        "output_cost_per_million": float,
+        "currency": str,
+        "is_estimate": bool,
+        "notes": str,
+    },
+    
+    # Visibility
+    "is_public": bool,
+    "is_active": bool,
+    
+    # TrueSkill ratings (for LLM/VLM subjective evaluation)
+    "trueskill": {
+        # 10-dimensional TrueSkill
+        # "raw_quality": {"mu": float, "sigma": float},
+        # ... etc
+    },
+    "trueskill_by_domain": {
+        # Domain-specific TrueSkill
+    },
+    
+    # Ground truth metrics (for ASR, TTS, etc.)
+    "ground_truth_metrics": {
+        # e.g., "wer": 0.05, "cer": 0.02, "mos": 4.2
+    },
+    "ground_truth_by_domain": {
+        # Domain-specific ground truth metrics
+    },
+    
+    # Tracking
+    "total_evaluations": int,
+    "domains_evaluated": List[str],
+    "last_evaluated_at": str,
+    "created_at": str,
+    "updated_at": str,
+}
+
+
+USER_MODEL_EVALUATION_SCHEMA: Dict[str, Any] = {
+    "_id": str,                            # eval_<uuid>
+    "model_id": str,                       # User model ID
+    "user_id": str,                        # Owner user ID
+    "domain": str,                         # Evaluation domain
+    "evaluation_type": str,                # subjective, ground_truth
+    "status": str,                         # queued, running, completed, failed
+    "progress": float,                     # 0.0 to 1.0
+    "current_step": str,                   # Current step description
+    
+    # Results
+    "trueskill_before": Dict,              # TrueSkill before evaluation
+    "trueskill_after": Dict,               # TrueSkill after evaluation
+    "metrics": Dict,                       # Evaluation metrics
+    "competitors": List[str],              # Models competed against
+    "matches_played": int,                 # Number of matches
+    
+    # Metadata
+    "error": str,                          # Error message if failed
+    "started_at": str,
+    "completed_at": str,
+    "timestamp": str,
+}
+
+
+def create_user_model_validator() -> Dict[str, Any]:
+    """Create MongoDB JSON Schema validator for user_models collection."""
+    return {
+        "$jsonSchema": {
+            "bsonType": "object",
+            "required": ["_id", "user_id", "name", "model_type"],
+            "properties": {
+                "_id": {"bsonType": "string"},
+                "user_id": {"bsonType": "string"},
+                "name": {"bsonType": "string"},
+                "model_type": {
+                    "bsonType": "string",
+                    "enum": ["LLM", "ASR", "TTS", "VLM", "V2V", "STT", 
+                            "ImageGen", "VideoGen", "Embedding", "Reranker"]
+                },
+                "version": {"bsonType": "string"},
+                "is_public": {"bsonType": "bool"},
+                "is_active": {"bsonType": "bool"},
+                "api_config": {"bsonType": "object"},
+                "type_config": {"bsonType": "object"},
+                "costs": {"bsonType": "object"},
+                "trueskill": {"bsonType": "object"},
+                "ground_truth_metrics": {"bsonType": "object"},
+            }
+        }
+    }
+
+

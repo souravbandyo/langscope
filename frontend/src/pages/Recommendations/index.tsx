@@ -153,14 +153,14 @@ export function Recommendations() {
           <EmptyState
             title="No recommendations available"
             message="Try selecting a different use case or domain."
-            icon="🎯"
+            icon="ph ph-target"
           />
         ) : (
           <div className={styles.recommendationsList}>
             {data.recommendations.map((rec, index) => (
               <div key={rec.model_id} className={styles.recommendationCard}>
-                <div className={styles.rankBadge}>
-                  {index < 3 ? ['🥇', '🥈', '🥉'][index] : `#${index + 1}`}
+                <div className={`${styles.rankBadge} ${index < 3 ? styles[`rank${index + 1}`] : ''}`}>
+                  {index < 3 ? <i className="ph-fill ph-medal"></i> : `#${index + 1}`}
                 </div>
                 <div className={styles.modelInfo}>
                   <h3 className={styles.modelName}>{rec.model_name}</h3>

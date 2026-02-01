@@ -298,7 +298,7 @@ export function BaseModels() {
         <EmptyState
           title="No base models found"
           message="Try adjusting your filters"
-          icon="🔍"
+          icon="ph ph-magnifying-glass"
         />
       ) : (
         <div className={styles.modelsGrid}>
@@ -335,10 +335,10 @@ export function BaseModels() {
               </div>
 
               <div className={styles.capabilityIcons}>
-                {model.capabilities.supports_vision && <span title="Vision">👁️</span>}
-                {model.capabilities.supports_audio && <span title="Audio">🔊</span>}
-                {model.capabilities.supports_function_calling && <span title="Function Calling">⚡</span>}
-                {model.capabilities.supports_json_mode && <span title="JSON Mode">📋</span>}
+                {model.capabilities.supports_vision && <i className="ph ph-eye" title="Vision"></i>}
+                {model.capabilities.supports_audio && <i className="ph ph-speaker-high" title="Audio"></i>}
+                {model.capabilities.supports_function_calling && <i className="ph ph-lightning" title="Function Calling"></i>}
+                {model.capabilities.supports_json_mode && <i className="ph ph-brackets-curly" title="JSON Mode"></i>}
               </div>
 
               <div className={styles.architectureInfo}>

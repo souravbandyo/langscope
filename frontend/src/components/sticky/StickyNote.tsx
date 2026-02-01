@@ -99,16 +99,16 @@ export function AlertSticky({
   }
 
   const defaultIcons: Record<string, string> = {
-    info: 'ℹ️',
-    warning: '⚠️',
-    success: '✓',
-    error: '✕',
+    info: 'ph ph-info',
+    warning: 'ph ph-warning',
+    success: 'ph ph-check-circle',
+    error: 'ph ph-x-circle',
   }
 
   return (
     <StickyNote color={color ?? typeColors[type]} pinned {...props}>
       <div className={styles.alertContent}>
-        {icon ?? <span className={styles.alertIcon}>{defaultIcons[type]}</span>}
+        {icon ?? <i className={`${defaultIcons[type]} ${styles.alertIcon}`}></i>}
         <div>{children}</div>
       </div>
     </StickyNote>

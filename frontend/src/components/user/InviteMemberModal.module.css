@@ -1,0 +1,229 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-md);
+}
+
+.modal {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-grid-dark);
+  width: 100%;
+  max-width: 450px;
+  box-shadow: var(--shadow-lg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-grid);
+}
+
+.title {
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.closeButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.closeButton:hover {
+  background: var(--color-sticky-pink);
+  color: #333;
+}
+
+.form {
+  padding: var(--spacing-lg);
+}
+
+.field {
+  margin-bottom: var(--spacing-lg);
+}
+
+.label {
+  display: block;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  border: 2px solid var(--color-grid-dark);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-ink);
+}
+
+.input:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.error {
+  display: block;
+  margin-top: var(--spacing-xs);
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  color: #c62828;
+}
+
+/* Role Options */
+.roleOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.roleOption {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid var(--color-grid);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.roleOption:hover {
+  border-color: var(--color-grid-dark);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.roleOption.selected {
+  border-color: var(--color-ink);
+  background: var(--color-sticky-blue);
+}
+
+.roleOption input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.roleContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.roleName {
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.roleDesc {
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.checkIcon {
+  font-size: 1.2rem;
+  color: var(--color-ink);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.roleOption.selected .checkIcon {
+  opacity: 1;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-grid);
+  margin-top: var(--spacing-md);
+}
+
+.cancelButton,
+.submitButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cancelButton {
+  background: white;
+  border: 2px solid var(--color-grid-dark);
+  color: #666;
+}
+
+.cancelButton:hover:not(:disabled) {
+  background: var(--color-sticky-pink);
+  border-color: var(--color-sticky-pink-dark);
+}
+
+.submitButton {
+  background: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  color: white;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #333;
+}
+
+.submitButton:disabled,
+.cancelButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitButton i {
+  font-size: 1rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.submitButton i.ph-spinner-gap {
+  animation: spin 1s linear infinite;
+}

@@ -903,3 +903,188 @@ class RefreshIndexResponse(BaseModel):
     domains_indexed: int
     similarities_computed: int
     duration_ms: float
+
+
+# =============================================================================
+# User Model Schemas (My Models / Private Testing)
+# =============================================================================
+
+class ModelAPIConfigSchema(BaseModel):
+    """API configuration for a user model."""
+    endpoint: str = Field(..., description="API endpoint URL")
+    api_key: Optional[str] = Field(None, description="API key (only for creation, not returned)")
+    model_id: str = Field(..., description="Model identifier for API calls")
+    api_format: str = Field("openai", description="API format (openai, anthropic, google, custom)")
+    has_api_key: bool = Field(False, description="Whether an API key is configured")
+    headers: Optional[Dict[str, str]] = None
+    extra_params: Optional[Dict[str, Any]] = None
+
+
+class ModelAPIConfigResponse(BaseModel):
+    """API configuration response (without sensitive data)."""
+    endpoint: str
+    model_id: str
+    api_format: str
+    has_api_key: bool
+
+
+class ModelTypeConfigSchema(BaseModel):
+    """Type-specific configuration."""
+    language: Optional[str] = None
+    sample_rate: Optional[int] = None
+    image_detail: Optional[str] = None
+    image_size: Optional[str] = None
+    steps: Optional[int] = None
+    guidance_scale: Optional[float] = None
+    embedding_dimension: Optional[int] = None
+    normalize: Optional[bool] = None
+    max_tokens: Optional[int] = None
+    temperature: Optional[float] = None
+
+
+class ModelCostsSchema(BaseModel):
+    """Cost configuration."""
+    input_cost_per_million: float = Field(0.0, ge=0)
+    output_cost_per_million: float = Field(0.0, ge=0)
+    currency: str = "USD"
+    is_estimate: bool = True
+    notes: Optional[str] = None
+
+
+class UserModelCreate(BaseModel):
+    """Request to create a new user model."""
+    name: str = Field(..., description="Model name")
+    description: Optional[str] = Field(None, description="Model description")
+    model_type: str = Field(..., description="Model type (LLM, ASR, TTS, VLM, etc.)")
+    version: str = Field("1.0", description="Model version")
+    base_model_id: Optional[str] = Field(None, description="Link to base model")
+    api_config: ModelAPIConfigSchema
+    type_config: Optional[ModelTypeConfigSchema] = None
+    costs: ModelCostsSchema
+    is_public: bool = Field(False, description="Make model visible on public leaderboard")
+
+
+class UserModelUpdate(BaseModel):
+    """Request to update a user model."""
+    name: Optional[str] = None
+    description: Optional[str] = None
+    version: Optional[str] = None
+    api_config: Optional[ModelAPIConfigSchema] = None
+    type_config: Optional[ModelTypeConfigSchema] = None
+    costs: Optional[ModelCostsSchema] = None
+    is_public: Optional[bool] = None
+    is_active: Optional[bool] = None
+
+
+class UserModelResponse(BaseModel):
+    """User model response."""
+    id: str
+    user_id: str
+    name: str
+    description: Optional[str]
+    model_type: str
+    version: str
+    base_model_id: Optional[str]
+    api_config: ModelAPIConfigResponse
+    type_config: Dict[str, Any] = {}
+    costs: ModelCostsSchema
+    is_public: bool
+    is_active: bool
+    trueskill: Optional[MultiDimensionalTrueSkillSchema] = None
+    ground_truth_metrics: Optional[Dict[str, float]] = None
+    total_evaluations: int
+    domains_evaluated: List[str]
+    last_evaluated_at: Optional[str]
+    created_at: str
+    updated_at: str
+
+
+class UserModelListResponse(BaseModel):
+    """List of user models response."""
+    models: List[UserModelResponse]
+    total: int
+    by_type: Dict[str, int] = {}
+
+
+class UserModelPerformanceResponse(BaseModel):
+    """Performance data for a user model."""
+    model_id: str
+    model_type: str
+    trueskill: Optional[MultiDimensionalTrueSkillSchema] = None
+    trueskill_by_domain: Optional[Dict[str, MultiDimensionalTrueSkillSchema]] = None
+    ground_truth_metrics: Optional[Dict[str, float]] = None
+    ground_truth_by_domain: Optional[Dict[str, Dict[str, float]]] = None
+    evaluation_history: List[Dict[str, Any]] = []
+    public_rank: Optional[int] = None
+    public_total: Optional[int] = None
+    percentile: Optional[float] = None
+
+
+class ModelComparisonEntry(BaseModel):
+    """Entry in model comparison."""
+    model_id: str
+    name: str
+    is_user_model: bool
+    model_type: str
+    provider: Optional[str] = None
+    metrics: Dict[str, float]
+    rank: int
+    costs: Optional[ModelCostsSchema] = None
+
+
+class ModelComparisonResponse(BaseModel):
+    """Comparison between user models and public leaderboard."""
+    domain: str
+    model_type: str
+    metric: str
+    entries: List[ModelComparisonEntry]
+    user_model_ids: List[str]
+
+
+class RunEvaluationRequest(BaseModel):
+    """Request to run evaluation on a user model."""
+    model_id: str = Field(..., description="User model ID")
+    domain: str = Field(..., description="Domain to evaluate in")
+    evaluation_type: str = Field(..., description="'subjective' or 'ground_truth'")
+    sample_count: Optional[int] = Field(10, ge=1, le=100)
+    competitors: Optional[List[str]] = Field(None, description="Model IDs to compete against")
+
+
+class RunEvaluationResponse(BaseModel):
+    """Response after starting an evaluation."""
+    evaluation_id: str
+    status: str  # queued, running, completed, failed
+    model_id: str
+    domain: str
+    estimated_duration_ms: Optional[int] = None
+    queue_position: Optional[int] = None
+
+
+class EvaluationStatusResponse(BaseModel):
+    """Status of a running evaluation."""
+    evaluation_id: str
+    status: str
+    progress: Optional[float] = None
+    current_step: Optional[str] = None
+    results: Optional[UserModelPerformanceResponse] = None
+    error: Optional[str] = None
+
+
+class TestConnectionRequest(BaseModel):
+    """Request to test model API connection."""
+    endpoint: str
+    api_key: str
+    model_id: str
+    api_format: str = "openai"
+
+
+class TestConnectionResponse(BaseModel):
+    """Response from connection test."""
+    success: bool
+    latency_ms: Optional[float] = None
+    error: Optional[str] = None
+
+
+class UpdateApiKeyRequest(BaseModel):
+    """Request to update API key."""
+    api_key: str = Field(..., description="New API key")

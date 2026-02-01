@@ -28,7 +28,7 @@ export function SystemHealth() {
   return (
     <SketchCard padding="md">
       <div className={styles.container}>
-        <div className={styles.icon}>⚙️</div>
+        <i className={`ph ph-gear ${styles.icon}`}></i>
         <div className={styles.content}>
           <span className={styles.label}>System Health:</span>
           <span className={`${styles.status} ${statusDisplay.className}`}>
