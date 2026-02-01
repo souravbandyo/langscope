@@ -317,6 +317,11 @@ class AuthMiddleware(BaseHTTPMiddleware):
         "/auth/local/login",  # Local development login
     }
     
+    # Path prefixes that don't require authentication
+    EXEMPT_PREFIXES = (
+        "/uploads/",  # Static file uploads (avatars, logos, etc.)
+    )
+    
     def _get_cors_headers(self, request: Request) -> dict:
         """Get CORS headers for error responses."""
         origin = request.headers.get("origin", "")
@@ -337,6 +342,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         # Skip auth for exempt paths
         if request.url.path in self.EXEMPT_PATHS:
+            return await call_next(request)
+        
+        # Skip auth for exempt path prefixes (like /uploads/)
+        if request.url.path.startswith(self.EXEMPT_PREFIXES):
             return await call_next(request)
         
         # Skip auth for OPTIONS requests (CORS preflight)
